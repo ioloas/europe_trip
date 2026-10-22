@@ -1,0 +1,2328 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>17天中歐冬日之旅 - 互動行程手冊</title>
+<style>
+        :root {
+            /* 莫蘭迪層次配色 */
+            --morandi-bg: #F0EDEC;          /* 大背景：暖燕麥米色 */
+            --morandi-card: #FFFFFF;        /* 卡片背景：純白 */
+            --morandi-header: #5B6E63;      /* Header/主題：深莫蘭迪綠（多層次） */
+            --morandi-primary: #9AAE99;     /* 主色/Day標籤：淺莫蘭迪綠 */
+            --morandi-secondary: #F2E6E2;   /* 住宿標籤：粉灰莫蘭迪 */
+            --morandi-secondary-text: #8C6258;
+            --morandi-text: #3D4347;        /* 主要文字色 */
+            --morandi-text-light: #737A80;  /* 次要文字色 */
+            --morandi-border: #E0DDD9;      /* 邊框色 */
+            --morandi-highlight: #EAEAEA;   /* 區塊/表格標題底色 */
+            --btn-green: #9AAE99;           /* 按鈕統一為淺莫蘭迪綠 */
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans TC", sans-serif;
+            background-color: var(--morandi-bg);
+            color: var(--morandi-text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.65;
+        }
+
+        header {
+            background: linear-gradient(135deg, #64796D 0%, #4E5F55 100%);
+            color: white;
+            text-align: center;
+            padding: 2.2rem 1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        header h1 {
+            margin: 0 0 0.4rem 0;
+            font-size: 1.85rem;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        header p {
+            margin: 0;
+            font-size: 1rem;
+            opacity: 0.92;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 1.8rem auto;
+            padding: 0 1rem 3rem;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 0.6rem;
+            margin-bottom: 1.8rem;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--morandi-bg);
+            padding: 0.8rem 0;
+        }
+
+        .nav-btn {
+            background-color: var(--morandi-card);
+            border: 1px solid var(--morandi-border);
+            color: var(--morandi-text);
+            padding: 0.55rem 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.25s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+        }
+
+        .nav-btn.active, .nav-btn:hover {
+            background-color: var(--morandi-header);
+            color: white;
+            border-color: var(--morandi-header);
+        }
+
+        .section-content { display: none; }
+        .section-content.active { display: block; }
+
+        .card {
+            background-color: var(--morandi-card);
+            border-radius: 14px;
+            padding: 1.4rem 1.5rem;
+            margin-bottom: 1.4rem;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.03);
+            border-left: 5px solid var(--morandi-primary);
+            overflow: hidden;
+        }
+
+        .card.hotel { border-left-color: #B09B8E; }
+        .card.transport { border-left-color: #72827A; }
+        .card.reminder { border-left-color: #C28E8E; background: #FFF7F7; }
+
+        h2.section-title {
+            color: var(--morandi-header);
+            border-bottom: 2px solid var(--morandi-border);
+            padding-bottom: 0.45rem;
+            margin: 1.8rem 0 1.2rem;
+            font-size: 1.35rem;
+        }
+
+        h3 {
+            margin: 0 0 0.8rem 0;
+            color: var(--morandi-text);
+            font-size: 1.12rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+
+        ul { padding-left: 1.15rem; margin: 0.4rem 0; }
+        li { margin-bottom: 0.45rem; }
+
+        a.map-link {
+            color: #5A7064;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px dashed #5A7064;
+            transition: all 0.2s;
+        }
+        a.map-link:hover {
+            color: #3F5247;
+            border-bottom: 1px solid #3F5247;
+        }
+
+        /* Tag 樣式：無框邊、淺莫蘭迪綠 */
+        .tag {
+            display: inline-block;
+            background-color: var(--morandi-primary);
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.83rem;
+            font-weight: 700;
+            margin-right: 0.35rem;
+            white-space: nowrap;
+            border: none;
+        }
+        .tag.time { 
+            background: #E8ECEF; 
+            color: #485966; 
+            border: none;
+        }
+        .tag.hotel { 
+            background: #E8E0EB; 
+            color: #6B5A78; 
+            border: none;
+        }
+        .tag.meal {
+            background: #E1AA8D;
+            color: #704638;
+            border: none;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.7rem;
+            padding: 0.55rem 0;
+            border-bottom: 1px solid var(--morandi-border);
+            font-size: 1rem;
+        }
+        .checklist-item:last-child { border-bottom: none; }
+        .checklist-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            min-width: 20px;
+            cursor: pointer;
+            accent-color: var(--morandi-primary);
+            margin-top: 2px;
+        }
+        .checklist-item.checked span {
+            text-decoration: line-through;
+            color: var(--morandi-text-light);
+        }
+
+        .route-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0.8rem 0;
+            font-size: 0.95rem;
+        }
+        .route-table th, .route-table td {
+            border: none;
+            border-bottom: 1px solid var(--morandi-border);
+            padding: 0.55rem 0.7rem;
+            text-align: left;
+            vertical-align: top;
+        }
+        .route-table th {
+            background: var(--morandi-highlight);
+            color: var(--morandi-header);
+            font-weight: 700;
+            border-bottom: 2px solid var(--morandi-border);
+        }
+        .route-table tr:nth-child(even) { background: #FAF9F8; }
+        .route-table tr:last-child td { border-bottom: none; }
+
+        /* 提醒區塊：移除邊框 */
+        .note {
+            background: #FFF9EB;
+            border: none;
+            border-left: 4px solid #D99B26;
+            padding: 0.75rem 1rem;
+            margin: 0.75rem 0;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            color: #5C4314;
+        }
+        .note strong {
+            color: #A36A00;
+        }
+
+        .phase-title {
+            background: var(--morandi-header);
+            color: white;
+            padding: 0.65rem 1rem;
+            border-radius: 8px;
+            margin: 1.8rem 0 1rem;
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* 景點地圖卡片網格 */
+        .attr-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .attr-card {
+            background: var(--morandi-card);
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .attr-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        .attr-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .attr-card .body {
+            padding: 1rem 1.1rem 1.2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .attr-card h4 {
+            margin: 0 0 0.4rem;
+            font-size: 1.05rem;
+            color: var(--morandi-text);
+        }
+
+        /* 景點卡片內開放時間改回淺莫蘭迪綠 */
+        .attr-card .hours {
+            font-size: 0.85rem;
+            color: #6D8276;
+            font-weight: 600;
+            margin-bottom: 0.45rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .attr-card .desc {
+            font-size: 0.9rem;
+            color: var(--morandi-text-light);
+            flex: 1;
+            margin-bottom: 0.9rem;
+        }
+
+        .attr-card .map-btn {
+            display: block;
+            text-align: center;
+            background: var(--btn-green);
+            color: white;
+            text-decoration: none;
+            padding: 0.55rem 0.8rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+        .attr-card .map-btn:hover {
+            background: #879C8F;
+        }
+
+        .city-group {
+            margin-bottom: 2.2rem;
+        }
+        /* 景點地圖分頁的城市標題改回淺莫蘭迪綠色調 */
+        .city-group h3 {
+            background: #F2F5F3;
+            color: #5A7064;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            border: 1px solid #E2EAE5;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            color: var(--morandi-text-light);
+            font-size: 0.88rem;
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.5rem; }
+            .nav-btn { padding: 0.45rem 0.8rem; font-size: 0.85rem; }
+            .card { padding: 1.1rem; }
+            .attr-grid { grid-template-columns: 1fr; }
+        }
+    
+        /* ===== 視覺升級：莫蘭迪冬日旅行誌（只調整呈現，不修改原有文字內容） ===== */
+        :root {
+            --morandi-bg: #F4F0EA;
+            --morandi-card: #FFFCF7;
+            --morandi-header: #596B60;
+            --morandi-primary: #A5B5A3;
+            --morandi-secondary: #EDE0DC;
+            --morandi-secondary-text: #8B625C;
+            --morandi-text: #3F4542;
+            --morandi-text-light: #7C817B;
+            --morandi-border: #DED8CE;
+            --morandi-highlight: #E9E8DF;
+            --btn-green: #788F7F;
+            --accent-clay: #C58E7D;
+            --accent-blue: #8CA6B2;
+            --accent-gold: #C4A66A;
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            background:
+                radial-gradient(ellipse at 8% 5%, rgba(197,142,125,.10), transparent 30rem),
+                radial-gradient(ellipse at 94% 24%, rgba(140,166,178,.12), transparent 28rem),
+                var(--morandi-bg);
+            color: var(--morandi-text);
+            font-size: 15.5px;
+            line-height: 1.78;
+            letter-spacing: .015em;
+        }
+        header {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            padding: clamp(2.7rem, 7vw, 5rem) 1.2rem 3.2rem;
+            background: linear-gradient(125deg, #74877A 0%, #596B60 54%, #7E8E83 100%);
+            box-shadow: 0 12px 35px rgba(66,78,69,.15);
+        }
+        /* 已移除 Header 新增的裝飾圖示，保留原有標題與配色。 */
+        header h1 {
+            font-family: "Noto Serif TC", "Songti TC", Georgia, serif;
+            font-size: clamp(1.9rem, 4.5vw, 3rem);
+            letter-spacing: .09em;
+            text-shadow: 0 2px 14px rgba(28,42,33,.15);
+        }
+        header p {
+            max-width: 850px;
+            margin: .8rem auto 0;
+            color: rgba(255,255,255,.92);
+            font-size: clamp(.88rem, 2vw, 1.02rem);
+            letter-spacing: .04em;
+        }
+        .container { max-width: 1120px; margin: 1.6rem auto; padding: 0 1.1rem 3.5rem; }
+        .nav-tabs {
+            gap: .65rem;
+            margin: 0 auto 2rem;
+            padding: .85rem;
+            border: 1px solid rgba(222,216,206,.9);
+            border-radius: 18px;
+            background: rgba(244,240,234,.91);
+            box-shadow: 0 8px 24px rgba(76,78,69,.07);
+            backdrop-filter: blur(12px);
+        }
+        .nav-btn {
+            border: 1px solid transparent;
+            border-radius: 999px;
+            padding: .7rem 1.15rem;
+            background: #FFFCF7;
+            color: #5D675F;
+            font-size: .91rem;
+            box-shadow: 0 3px 9px rgba(70,75,67,.05);
+        }
+        .nav-btn.active, .nav-btn:hover {
+            background: var(--morandi-header);
+            border-color: var(--morandi-header);
+            color: #fffdf8;
+            box-shadow: 0 5px 14px rgba(72,91,78,.2);
+            transform: translateY(-1px);
+        }
+        .section-content { animation: softEnter .32s ease both; }
+        @keyframes softEnter { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: translateY(0); } }
+        .phase-title {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: .6rem;
+            padding: .85rem 1.2rem;
+            margin: 2.4rem 0 1.25rem;
+            border-radius: 12px;
+            background: linear-gradient(110deg, #617568, #7D9182);
+            box-shadow: 0 6px 15px rgba(78,98,83,.13);
+            letter-spacing: .035em;
+        }
+        .phase-title::before { content: "✧"; color: #E9D9B9; font-size: 1.2rem; }
+        .phase-title::after { content: "✧"; color: #E9D9B9; font-size: 1.2rem; }
+        .card {
+            position: relative;
+            border: 1px solid rgba(222,216,206,.78);
+            border-left: 4px solid var(--morandi-primary);
+            border-radius: 17px;
+            padding: clamp(1.05rem, 2.7vw, 1.7rem);
+            margin-bottom: 1.25rem;
+            background: rgba(255,252,247,.96);
+            box-shadow: 0 7px 24px rgba(73,73,62,.055);
+            transition: transform .22s ease, box-shadow .22s ease;
+        }
+        .card:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(73,73,62,.09); }
+        .card.hotel { border-left-color: #B49A8D; }
+        .card.transport { border-left-color: #8CA6B2; }
+        .card.reminder { border-left-color: #C58E7D; background: #FCF4F0; }
+        h2.section-title {
+            display: flex;
+            align-items: center;
+            gap: .65rem;
+            color: var(--morandi-header);
+            border-bottom: 1px solid var(--morandi-border);
+            padding: .2rem 0 .8rem;
+            margin: 1.8rem 0 1.4rem;
+            font-size: clamp(1.35rem, 3vw, 1.75rem);
+            letter-spacing: .025em;
+        }
+        h2.section-title::after {
+            content: "";
+            height: 3px;
+            width: 48px;
+            border-radius: 99px;
+            background: var(--accent-clay);
+            margin-left: auto;
+        }
+        h3 { line-height: 1.5; font-size: clamp(1.02rem, 2.2vw, 1.18rem); }
+        .card h3 { color: #4F6256; }
+        ul { padding-left: 1.25rem; }
+        li { padding-left: .12rem; margin-bottom: .55rem; }
+        li::marker { color: #91A18F; }
+        a.map-link {
+            color: #536F61;
+            border-bottom: 1px dashed #A0B0A0;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 3px;
+        }
+        a.map-link:hover { color: #A66F60; border-color: #A66F60; }
+        .tag {
+            background: #879C8B;
+            color: #fffdf8;
+            border-radius: 999px;
+            padding: .19rem .68rem;
+            font-size: .78rem;
+            letter-spacing: .025em;
+        }
+        .tag.time { background: #E6EBEA; color: #53676C; }
+        .tag.hotel { background: #E8E0EB; color: #6B5A78; }
+        .tag.meal { background: #E1AA8D; color: #5C3D2E; }
+        a.map-link.meal-link {
+            color: #E1AA8D;
+            border-bottom-color: #E1AA8D;
+        }
+        a.map-link.meal-link:hover {
+            color: #C4896A;
+            border-bottom-color: #C4896A;
+        }
+        a.map-link.hotel-link {
+            color: #6B5A78;
+            border-bottom-color: #B5A5C0;
+        }
+        a.map-link.hotel-link:hover {
+            color: #4F425A;
+            border-bottom-color: #4F425A;
+        }
+
+        .note {
+            background: #F7F0DF;
+            border-left: 4px solid #C4A66A;
+            border-radius: 5px 12px 12px 5px;
+            padding: .9rem 1rem;
+            color: #65583F;
+        }
+        .note strong { color: #8C7040; }
+        .route-table {
+            border-collapse: separate;
+            border-spacing: 0;
+            overflow: hidden;
+            border: 1px solid var(--morandi-border);
+            border-radius: 12px;
+            font-size: .92rem;
+        }
+        .route-table th, .route-table td { padding: .72rem .8rem; border-bottom: 1px solid #E8E2D9; }
+        .route-table th { background: #E8E9E0; color: #596B60; }
+        .route-table tr:nth-child(even) { background: #F8F5EF; }
+        .route-table tr:last-child td { border-bottom: 0; }
+        .checklist-item {
+            padding: .7rem .25rem;
+            border-bottom: 1px dashed #DDD8CF;
+        }
+        .checklist-item input[type="checkbox"] {
+            width: 21px; height: 21px; min-width: 21px;
+            accent-color: #758B79;
+        }
+        .checklist-item.checked span { color: #92958E; }
+        .attr-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 270px), 1fr)); gap: 1.15rem; }
+        .attr-card {
+            border: 1px solid rgba(222,216,206,.9);
+            border-radius: 17px;
+            background: #FFFCF7;
+            box-shadow: 0 7px 20px rgba(73,73,62,.065);
+        }
+        .attr-card img { height: 190px; transition: transform .5s ease; }
+        .attr-card { overflow: hidden; }
+        .attr-card:hover img { transform: scale(1.035); }
+        .attr-card .body { padding: 1.05rem 1.15rem 1.2rem; }
+        .attr-card h4 { color: #53675A; font-size: 1.08rem; }
+        .attr-card .hours { color: #788F7F; }
+        .attr-card .desc { line-height: 1.75; }
+        .attr-card .map-btn {
+            border-radius: 999px;
+            background: #788F7F;
+            padding: .65rem .9rem;
+            box-shadow: 0 4px 10px rgba(89,112,95,.13);
+        }
+        .attr-card .map-btn:hover { background: #596B60; }
+        .city-group h3 {
+            border: 1px solid #DCE4DB;
+            border-radius: 12px;
+            background: linear-gradient(100deg, #E9EFE8, #F4F0E8);
+            color: #53675A;
+            padding: .75rem 1rem;
+        }
+        footer {
+            margin-top: 1rem;
+            padding: 2.3rem 1rem;
+            background: #E8E7DE;
+            color: #747B72;
+            line-height: 1.9;
+        }
+        @media (max-width: 600px) {
+            body { font-size: 15.5px; line-height: 1.7; }
+            /* 手機版縮短頁首，避免標題佔用過多首屏高度 */
+            header { padding: .75rem .7rem .8rem; }
+            header h1 { font-size: 1.2rem; line-height: 1.35; letter-spacing: .02em; margin: 0 0 .15rem; }
+            header p { font-size: .78rem; line-height: 1.4; }
+            .container { margin-top: .4rem; padding-left: .6rem; padding-right: .6rem; padding-bottom: 4.5rem; }
+            /* ===== 導覽列優化：更大點擊區、兩列平均分布、更易點按 ===== */
+            .nav-tabs {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: .32rem;
+                padding: .32rem;
+                margin-bottom: .65rem;
+                border-radius: 10px;
+                position: sticky;
+                top: 0;
+                z-index: 100;
+                background: rgba(244,240,234,.97);
+                backdrop-filter: blur(14px);
+                -webkit-backdrop-filter: blur(14px);
+                box-shadow: 0 4px 14px rgba(70,75,67,.08);
+            }
+            .nav-btn {
+                flex: none;
+                width: 100%;
+                min-width: 0;
+                padding: .42rem .2rem;
+                font-size: .76rem;
+                line-height: 1.25;
+                border-radius: 8px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                min-height: 36px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                -webkit-tap-highlight-color: transparent;
+            }
+            .nav-btn.active, .nav-btn:hover {
+                transform: none;
+            }
+            .card { border-radius: 12px; padding: .9rem; margin-bottom: .9rem; }
+            h2.section-title { margin-top: 1.1rem; font-size: 1.18rem; }
+            .phase-title { font-size: .94rem; padding: .65rem .5rem; gap: .35rem; }
+            .route-table { display: block; overflow-x: auto; white-space: normal; }
+            .attr-grid { grid-template-columns: 1fr; }
+            .attr-card img { height: 180px; aspect-ratio: 16/10; object-fit: cover; }
+            #itinerary .tag { margin-bottom: .2rem; }
+            .checklist-item input[type="checkbox"] {
+                width: 24px; height: 24px; min-width: 24px;
+            }
+            .checklist-item { padding: .75rem .2rem; gap: .8rem; }
+            .attraction-city-btn, .food-filter, .city-map-btn {
+                min-height: 40px;
+                padding: .55rem .85rem !important;
+            }
+        }
+
+        /* 手機版交通表格：每個路段改為直向資訊卡，避免左右滑動及文字擠壓 */
+        @media (max-width: 600px) {
+            #transport .route-table {
+                display: block; width: 100%; overflow: visible; white-space: normal;
+                border-collapse: separate; border-spacing: 0; table-layout: auto;
+            }
+            #transport .route-table tr:first-child { display: none; }
+            #transport .route-table tr {
+                display: block; margin: 0 0 .8rem; padding: .55rem .65rem;
+                border: 1px solid #d8dfdc; border-left: 4px solid #8CA6B2;
+                border-radius: 11px; overflow: hidden; box-shadow: 0 2px 7px rgba(50,65,60,.05);
+            }
+            /* 每張手機資訊卡沿用桌面表格該路段的完整底色 */
+            #transport .route-table tr:nth-child(2) { background-color:#DCE7E2; border-left-color:#8CA6B2; }
+            #transport .route-table tr:nth-child(3) { background-color:#E4EAE3; border-left-color:#9AAEBB; }
+            #transport .route-table tr:nth-child(4) { background-color:#E5E9EC; border-left-color:#B7A3A0; }
+            #transport .route-table tr:nth-child(5) { background-color:#F0E4DF; border-left-color:#A99BB5; }
+            #transport .route-table tr:nth-child(6) { background-color:#EAE5EC; border-left-color:#A9AC91; }
+            #transport .route-table tr:nth-child(7) { background-color:#E8E8DF; border-left-color:#C3AD82; }
+            #transport .route-table tr:nth-child(8) { background-color:#F0E9DA; border-left-color:#8CAFA5; }
+            #transport .route-table tr:nth-child(9) { background-color:#DCE7E2; border-left-color:#91AFC4; }
+            #transport .route-table tr:nth-child(10) { background-color:#DCE5EF; border-left-color:#B4A2BE; }
+            #transport .route-table tr:nth-child(11) { background-color:#E8E0EB; border-left-color:#83AEB8; }
+            #transport .route-table tr:nth-child(12) { background-color:#D9E9ED; border-left-color:#C5A58C; }
+            #transport .route-table tr:nth-child(13) { background-color:#F1E3D5; border-left-color:#AAB18A; }
+            #transport .route-table td {
+                display: grid; grid-template-columns: 5.2rem minmax(0,1fr); gap: .55rem;
+                align-items: start; width: 100%; box-sizing: border-box;
+                padding: .48rem .15rem; border: 0; border-bottom: 1px solid rgba(90,105,100,.14);
+                background: transparent !important; color: #394B4D; font-size: .9rem;
+                line-height: 1.55; overflow-wrap: anywhere; white-space: normal;
+            }
+            #transport .route-table td:last-child { border-bottom: 0; }
+            #transport .route-table td::before {
+                font-weight: 700; color: #566F82; font-size: .8rem; line-height: 1.6;
+            }
+            #transport .route-table td:nth-child(1)::before { content: '日期'; }
+            #transport .route-table td:nth-child(2)::before { content: '路段'; }
+            #transport .route-table td:nth-child(3)::before { content: '交通方式'; }
+            #transport .route-table td:nth-child(4)::before { content: '時間'; }
+            #transport .route-table td:nth-child(5)::before { content: '備註'; }
+            #transport .route-table td.route-segment { border-left: 0; font-weight: 700; }
+            #transport .card.transport { padding: .75rem; }
+            #transport .card.transport h3 { font-size: 1rem; line-height: 1.45; }
+
+            /* 路段卡片預設收合：只顯示日期+路段，點擊展開其餘欄位 */
+            #transport .route-table tr {
+                position: relative;
+                cursor: pointer;
+                padding-bottom: 1.85rem;
+                -webkit-tap-highlight-color: transparent;
+            }
+            #transport .route-table tr:not(.route-expanded) td:nth-child(n+3) {
+                display: none;
+            }
+            #transport .route-table tr:not(.route-expanded) td:nth-child(2) {
+                border-bottom: 0;
+            }
+            #transport .route-table tr::after {
+                content: "展開詳情 ▾";
+                position: absolute;
+                left: .65rem;
+                right: .65rem;
+                bottom: .45rem;
+                font-size: .78rem;
+                font-weight: 700;
+                color: #566F82;
+                text-align: center;
+                padding: .2rem 0;
+                border-top: 1px dashed rgba(90,105,100,.2);
+            }
+            #transport .route-table tr.route-expanded::after {
+                content: "收合 ▴";
+                color: #6B7A6E;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+        }
+
+    
+        /* 交通分頁：參照行程 Tag 的莫蘭迪配色，路段以柔和色帶區分 */
+        .tag.transport { background: #DCE7E2; color: #47675B; border: 1px solid #C7D9D0; }
+        .tag.transport.route-bus { background: #DCE7E2; color: #47675B; border-color: #C7D9D0; }
+        .tag.transport.route-train { background: #DCE5EF; color: #49657D; border-color: #C5D4E3; }
+        .tag.transport.route-flight { background: #E8E0EB; color: #6B5A78; border-color: #D8CADD; }
+        .tag.transport.route-ferry { background: #D9E9ED; color: #426D78; border-color: #BED8DF; }
+        .tag.transport.route-return { background: #F2E4C9; color: #80643B; border-color: #E6D3AE; }
+        a.map-link.transport-link { color: #587D91; border-bottom-color: #A7C1CE; }
+        a.map-link.transport-link:hover { color: #365D70; border-bottom-color: #587D91; }
+        .route-table td.route-segment { font-weight: 700; border-left: 5px solid var(--segment-color, #8CA6B2); background: var(--segment-bg, #F0F3F2); color: #394B4D; }
+        .route-table td.route-day { font-weight: 700; white-space: nowrap; }
+        .route-table tr.segment-row td { transition: background-color .2s ease; }
+</style>
+<style>
+      .salzburg-map-panel{background:#fff;border-radius:18px;padding:1rem;box-shadow:0 6px 22px rgba(55,65,60,.08);margin-bottom:1.5rem}
+      .map-controls{display:flex;flex-wrap:wrap;gap:.55rem;margin:.8rem 0;align-items:center}
+      .map-filter{display:inline-block;border:1px solid #d5ddd5;border-radius:999px;padding:.65rem 1rem;background:#f8f7f3;color:#46564c;font-weight:700;text-decoration:none;cursor:pointer}
+      .map-filter:hover{background:#e9eee8}
+      .map-legend{display:flex;flex-wrap:wrap;gap:.8rem;font-size:.9rem;color:#59635d;margin:.65rem 0}
+      .map-legend span{display:inline-flex;align-items:center;gap:.35rem}.legend-dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+      .map-note{font-size:.9rem;color:#737a80;margin:.65rem 0 0}
+      .google-map-card{border:1px solid #e1e5df;border-radius:14px;padding:1rem;margin:.75rem 0;background:#fbfaf7}
+      .google-map-card h3{margin:.1rem 0 .45rem;color:#46564c}.google-map-card p{margin:.35rem 0 .8rem}
+      .google-map-link{display:inline-flex;align-items:center;gap:.4rem;border-radius:10px;padding:.65rem .9rem;background:#5b6e63;color:white;text-decoration:none;font-weight:700}
+      .google-map-link:hover{background:#46564c}
+      .place-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.65rem;margin-top:1rem}
+      .place-link{display:block;border:1px solid #e1e5df;border-radius:12px;padding:.75rem .85rem;background:white;color:#46564c;text-decoration:none}
+      .place-link:hover{border-color:#8a9b8e;background:#f8f7f3}.place-link small{display:block;color:#737a80;margin-top:.25rem}
+      @media(max-width:600px){.salzburg-map-panel{padding:.7rem}.map-filter{font-size:.88rem}}
+    </style>
+<link crossorigin="" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet"/>
+<style>
+      #centralEuropeMap{height: min(68vh, 620px); min-height:390px; width:100%; border-radius:16px; border:1px solid #dfe4de; z-index:1; background:#e8ece7; touch-action: pan-x pan-y;}
+      .city-map-controls{display:flex;flex-wrap:wrap;gap:.5rem;margin:1rem 0 .65rem}
+      .city-map-btn{border:1px solid #d5ddd5;border-radius:999px;padding:.6rem .9rem;background:#f8f7f3;color:#46564c;font-weight:700;cursor:pointer}
+      .city-map-btn.active,.city-map-btn:hover{background:#5b6e63;color:#fff;border-color:#5b6e63}
+      .city-map-summary{font-size:.92rem;color:#59635d;margin:.4rem 0 .7rem}
+      .leaflet-popup-content{line-height:1.55;min-width:150px}.leaflet-popup-content a{color:#526d60;font-weight:700}
+      .trip-map-marker{display:flex;align-items:center;justify-content:center;width:27px;height:27px;border-radius:50%;border:2px solid white;box-shadow:0 1px 6px #0004;color:#fff;font-weight:800;font-size:12px}
+      /* 地圖觸控優化：手機版高度適中、避免與頁面捲動衝突 */
+      @media(max-width:600px){
+        #centralEuropeMap{height:52vh;min-height:300px;max-height:420px}
+        .city-map-btn{font-size:.85rem;padding:.55rem .75rem;min-height:40px}
+        .city-map-controls{
+          display:flex; flex-wrap:nowrap; overflow-x:auto; -webkit-overflow-scrolling:touch;
+          gap:.4rem; padding-bottom:.35rem; margin:.7rem 0 .5rem;
+          scrollbar-width:none;
+        }
+        .city-map-controls::-webkit-scrollbar{display:none}
+        .city-map-btn{flex:0 0 auto; white-space:nowrap}
+        .leaflet-control-zoom a{width:34px!important;height:34px!important;line-height:34px!important;font-size:18px!important}
+      }
+    </style>
+<style id="attraction-city-tags-style">
+.attraction-city-filters{display:flex;flex-wrap:wrap;gap:.5rem;margin:1rem 0 1.25rem;align-items:center}
+.attraction-city-btn{border:1px solid #FFFCF7!important;border-radius:999px;box-shadow:0 1px 3px rgba(70,65,55,.08);padding:.58rem .9rem;font:inherit;font-size:.93rem;font-weight:600;cursor:pointer;transition:background .18s,color .18s,box-shadow .18s}
+.attraction-city-btn[data-attraction-city="all"]{background:#F0E9DA;color:#76664B}
+.attraction-city-btn[data-attraction-city="salzburg"]{background:#E4EAE3;color:#586B5D}
+.attraction-city-btn[data-attraction-city="lake"]{background:#E5E9EC;color:#566B78}
+.attraction-city-btn[data-attraction-city="czech"]{background:#F0E4DF;color:#86675D}
+.attraction-city-btn[data-attraction-city="vienna"]{background:#EAE5EC;color:#706578}
+.attraction-city-btn[data-attraction-city="budapest"]{background:#E8E8DF;color:#6E7459}
+.attraction-city-btn.active[data-attraction-city="all"]{background:#8C7956;color:#FFFCF7}
+.attraction-city-btn.active[data-attraction-city="salzburg"]{background:#6C806C;color:#FFFCF7}
+.attraction-city-btn.active[data-attraction-city="lake"]{background:#6F8795;color:#FFFCF7}
+.attraction-city-btn.active[data-attraction-city="czech"]{background:#A0786B;color:#FFFCF7}
+.attraction-city-btn.active[data-attraction-city="vienna"]{background:#75627A;color:#FFFCF7}
+.attraction-city-btn.active[data-attraction-city="budapest"]{background:#7C8266;color:#FFFCF7}
+.attraction-city-btn:hover{filter:brightness(.96);box-shadow:0 2px 7px #00000012}
+@media(max-width:600px){.attraction-city-btn{font-size:.85rem;padding:.55rem .75rem}}
+</style>
+<style id="city-map-tags-match-food">
+/* 各城市互動地圖 Tag：參照美食分頁，保留每個 Tag 的莫蘭迪原色，互動時加深同色系 */
+#cityMapControls .city-map-btn { border:0 !important; border-radius:999px; padding:.58rem .9rem; background:#E4EAE3; color:#586B5D; font:inherit; font-size:.93rem; font-weight:600; cursor:pointer; transition:background .18s,box-shadow .18s; }
+#cityMapControls .city-map-btn:nth-child(6n+1) { background:#E4EAE3; color:#586B5D; }
+#cityMapControls .city-map-btn:nth-child(6n+2) { background:#E5E9EC; color:#566B78; }
+#cityMapControls .city-map-btn:nth-child(6n+3) { background:#F0E4DF; color:#86675D; }
+#cityMapControls .city-map-btn:nth-child(6n+4) { background:#EAE5EC; color:#706578; }
+#cityMapControls .city-map-btn:nth-child(6n+5) { background:#E8E8DF; color:#626B5B; }
+#cityMapControls .city-map-btn:nth-child(6n) { background:#F0E9DA; color:#786B51; }
+#cityMapControls .city-map-btn:hover,
+#cityMapControls .city-map-btn.active { color:#FFFCF7 !important; box-shadow:0 2px 6px rgba(61,55,65,.12); }
+#cityMapControls .city-map-btn:nth-child(6n+1):hover,
+#cityMapControls .city-map-btn:nth-child(6n+1).active { background:#6C806C !important; border-color:#6C806C !important; }
+#cityMapControls .city-map-btn:nth-child(6n+2):hover,
+#cityMapControls .city-map-btn:nth-child(6n+2).active { background:#6F8795 !important; border-color:#6F8795 !important; }
+#cityMapControls .city-map-btn:nth-child(6n+3):hover,
+#cityMapControls .city-map-btn:nth-child(6n+3).active { background:#A0786B !important; border-color:#A0786B !important; }
+#cityMapControls .city-map-btn:nth-child(6n+4):hover,
+#cityMapControls .city-map-btn:nth-child(6n+4).active { background:#75627A !important; border-color:#75627A !important; }
+#cityMapControls .city-map-btn:nth-child(6n+5):hover,
+#cityMapControls .city-map-btn:nth-child(6n+5).active { background:#7C8266 !important; border-color:#7C8266 !important; }
+#cityMapControls .city-map-btn:nth-child(6n):hover,
+#cityMapControls .city-map-btn:nth-child(6n).active { background:#8C7956 !important; border-color:#8C7956 !important; }
+@media(max-width:600px){#cityMapControls .city-map-btn{font-size:.85rem;padding:.55rem .75rem}}
+</style>
+<style>
+   .food-filters{display:flex;flex-wrap:wrap;gap:.5rem;margin:1rem 0 .65rem}.food-filter{border:1px solid #d5ddd5;border-radius:999px;padding:.6rem .9rem;background:#f8f7f3;color:#46564c;font-weight:700;cursor:pointer;font:inherit}.food-filter.active,.food-filter:hover{background:#5b6e63;color:#fff;border-color:#5b6e63}.food-city{display:none}.food-city.active{display:block}.food-city h3{margin:1.1rem 0 .6rem;color:#53685e}.food-city h4{margin:.9rem 0 .5rem;color:#786d60}.food-list{margin-top:.2rem}.restaurant-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:.8rem}.restaurant-card{background:#fbfaf7;border:1px solid #e1ddd4;border-radius:12px;padding:1rem;box-shadow:0 2px 7px rgba(80,70,50,.04)}.restaurant-link{font-weight:700;color:#526b60;text-decoration:underline;text-underline-offset:3px}.restaurant-desc{margin:.45rem 0;color:#6e6a62}.restaurant-hours{margin:.35rem 0 0;font-size:.92rem;color:#4f514d;line-height:1.5}.food-city .food-list li{margin:.25rem 0}
+  </style>
+<style id="food-morandi-layout-fix">
+/* 美食分頁專用：與每日行程表及互動地圖共用同一組莫蘭迪色，不影響其他分頁 */
+#food { width:100%; min-width:0; padding:.25rem 0 1rem; color:var(--morandi-text); }
+/* 美食標題沿用全站 section-title 樣式：字色、底線及間距與「景點地圖與開放時間指引」一致 */
+#food .map-note { padding:.9rem 1rem; border-radius:10px; background:#F4F1E9; border:0; border-left:4px solid #B8A58A; color:#655F55; }
+#food .food-filters { display:flex; flex-wrap:wrap; align-items:center; gap:.55rem; margin:1rem 0 1.25rem; }
+/* 城市 Tag：行程表風格，無邊框，使用低飽和自然色 */
+#food .food-filter { border:1px solid #FFFCF7 !important; box-shadow:0 1px 3px rgba(70,65,55,.08); background:#E4EAE3; color:#586B5D; border-radius:999px; padding:.58rem .9rem; cursor:pointer; font:inherit; font-size:.93rem; font-weight:600; transition:background .18s,box-shadow .18s; }
+#food .food-filter:nth-child(2n) { background:#E5E9EC; color:#566B78; }
+#food .food-filter:nth-child(3n) { background:#F0E4DF; color:#86675D; }
+#food .food-filter:nth-child(4n) { background:#EAE5EC; color:#706578; }
+#food .food-filter:nth-child(5n) { background:#E8E8DF; color:#626B5B; }
+#food .food-filter:nth-child(6n) { background:#F0E9DA; color:#786B51; }
+/* 滑鼠移至或選取城市 Tag 時，沿用各 Tag 原本色系並加深；只影響 Tag 本身 */
+#food .food-filter:hover,
+#food .food-filter.active { color:#FFFCF7 !important; filter:none; border-color:rgba(255,252,247,.9) !important; box-shadow:0 2px 6px rgba(61,55,65,.16); }
+#food .food-filter:nth-child(6n+1):hover,
+#food .food-filter:nth-child(6n+1).active { background:#6C806C !important; border-color:#6C806C !important; }
+#food .food-filter:nth-child(6n+2):hover,
+#food .food-filter:nth-child(6n+2).active { background:#6F8795 !important; border-color:#6F8795 !important; }
+#food .food-filter:nth-child(6n+3):hover,
+#food .food-filter:nth-child(6n+3).active { background:#A0786B !important; border-color:#A0786B !important; }
+#food .food-filter:nth-child(6n+4):hover,
+#food .food-filter:nth-child(6n+4).active { background:#75627A !important; border-color:#75627A !important; }
+#food .food-filter:nth-child(6n+5):hover,
+#food .food-filter:nth-child(6n+5).active { background:#7C8266 !important; border-color:#7C8266 !important; }
+#food .food-filter:nth-child(6n):hover,
+#food .food-filter:nth-child(6n).active { background:#8C7956 !important; border-color:#8C7956 !important; }
+#food .food-city { display:none; min-width:0; }
+#food .food-city.active { display:block; animation:foodFadeIn .2s ease-out; }
+#food .food-city h3 { margin:1rem 0 .75rem; padding:.65rem .9rem; border-radius:10px; background:#E8EDE7; color:var(--morandi-header); border:0; border-left:4px solid var(--morandi-primary); }
+#food .food-city h4 { margin:1rem 0 .6rem; color:#8C6258; }
+#food .restaurant-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr)); gap:.9rem; align-items:stretch; }
+#food .restaurant-card { min-width:0; overflow-wrap:anywhere; background:var(--morandi-card); border:1px solid var(--morandi-border); border-left:4px solid var(--morandi-primary); border-radius:13px; padding:1rem 1.05rem; box-shadow:0 3px 10px rgba(61,67,71,.035); }
+#food .restaurant-card:nth-child(4n+2) { border-left-color:#9AADB6; }
+#food .restaurant-card:nth-child(4n+3) { border-left-color:#B7A9BF; }
+#food .restaurant-card:nth-child(4n) { border-left-color:#C4A092; }
+/* 餐廳名稱使用莫蘭迪深橙文字與柔和黃色 Highlight */
+#food .restaurant-link { color:#A76545; background:#F3E8C8; padding:.1em .28em; border-radius:4px; text-decoration:none; text-underline-offset:3px; box-decoration-break:clone; -webkit-box-decoration-break:clone; }
+#food .restaurant-link:hover { text-decoration:underline; color:#8E5038; background:#EDE0B5; }
+#food .restaurant-desc { color:var(--morandi-text-light); line-height:1.65; }
+#food .restaurant-hours { color:#788279; }
+@keyframes foodFadeIn { from {opacity:0; transform:translateY(3px)} to {opacity:1; transform:translateY(0)} }
+@media(max-width:600px) { #food .food-filter { padding:.5rem .72rem; font-size:.86rem; } #food .restaurant-grid { grid-template-columns:minmax(0,1fr); } #food .restaurant-card { padding:.9rem; } #food .section-title { font-size:1.25rem; } }
+</style>
+<style id="attraction-title-google-links">
+#attractions .attr-card h4 .attraction-title-link{color:inherit;text-decoration:none;display:block;line-height:1.5;transition:color .18s}
+#attractions .attr-card h4 .attraction-title-link:hover{color:#A0786B;text-decoration:underline;text-underline-offset:3px}
+#attractions .attr-card h4 [lang="en"]{font-size:.88em;font-weight:500;color:#8A8178;display:block;margin-top:.08rem}
+</style>
+<style>
+/* 交通分頁：每條路段整列統一使用莫蘭迪底色，包含交通方式、時間及備註 */
+#transport .route-table tr:nth-child(2) td { background: #E4EAE3; }
+#transport .route-table tr:nth-child(3) td { background: #E5E9EC; }
+#transport .route-table tr:nth-child(4) td { background: #F0E4DF; }
+#transport .route-table tr:nth-child(5) td { background: #EAE5EC; }
+#transport .route-table tr:nth-child(6) td { background: #E8E8DF; }
+#transport .route-table tr:nth-child(7) td { background: #F0E9DA; }
+#transport .route-table tr:nth-child(8) td { background: #DCE7E2; }
+#transport .route-table tr:nth-child(9) td { background: #DCE5EF; }
+#transport .route-table tr:nth-child(10) td { background: #E8E0EB; }
+#transport .route-table tr:nth-child(11) td { background: #D9E9ED; }
+#transport .route-table tr:nth-child(12) td { background: #F1E3D5; }
+#transport .route-table tr:nth-child(13) td { background: #E7E8D8; }
+#transport .route-table td { transition: background-color .15s ease; }
+</style>
+
+<style id="itinerary-transport-tags-deep-blue-gray">
+/* 行程分頁：交通、回程、航班等 Tag 統一使用指定深藍灰底與米白字；不影響交通分頁路段配色 */
+#itinerary .tag.transport {
+  background: #566F82 !important;
+  background-color: #566F82 !important;
+  color: #F5F3ED !important;
+  border: 1px solid #566F82 !important;
+}
+</style>
+
+<style id="mobile-ux-polish">
+/* ===== 手機版其他細節優化 ===== */
+#backToTop {
+  position: fixed;
+  right: 1rem;
+  bottom: 1.4rem;
+  z-index: 999;
+  width: 46px;
+  height: 46px;
+  border: none;
+  border-radius: 50%;
+  background: #5B6E63;
+  color: #fff;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1;
+  box-shadow: 0 4px 14px rgba(60,70,65,.28);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity .25s, visibility .25s, transform .25s, background .2s;
+  -webkit-tap-highlight-color: transparent;
+  bottom: max(1.4rem, env(safe-area-inset-bottom, 0px) + 1rem);
+}
+#backToTop.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+#backToTop:active { background: #4a5c52; }
+
+body {
+  padding-left: env(safe-area-inset-left, 0);
+  padding-right: env(safe-area-inset-right, 0);
+}
+
+@media (max-width: 600px) {
+  a.map-link, a.attraction-title-link, a.restaurant-link {
+    padding: .1rem 0;
+  }
+  #itinerary .card li {
+    margin-bottom: .65rem;
+  }
+  .leaflet-popup-content {
+    font-size: .95rem;
+    min-width: 160px;
+  }
+  .leaflet-popup-content a {
+    display: inline-block;
+    padding: .35rem 0;
+  }
+  .card:hover { transform: none; }
+  .attr-card:hover { transform: none; }
+  .attr-card:hover img { transform: none; }
+}
+
+@media (max-width: 380px) {
+  .nav-btn { font-size: .7rem; padding: .36rem .12rem; min-height: 34px; }
+  header h1 { font-size: 1.1rem; }
+}
+</style>
+
+</head>
+<body>
+<header>
+<h1>🎄 17天中歐冬日之旅</h1>
+<p>12月5日 ➔ 12月21日 ｜ 薩爾斯堡・奧地利湖區・CK小鎮・布拉格・維也納・布達佩斯</p>
+</header>
+<div class="container">
+<div class="nav-tabs">
+<button class="nav-btn active" onclick="switchTab('itinerary', this)">📅 行程</button>
+<button class="nav-btn" onclick="switchTab('transport', this)">🚆 交通</button>
+<button class="nav-btn" onclick="switchTab('checklist', this)">☑️ 行前準備清單</button>
+<button class="nav-btn" onclick="switchTab('attractions', this)">📍 景點</button>
+<button class="nav-btn" onclick="switchTab('salzburg-map', this);">🗺️ 各城市互動地圖</button>
+<button class="nav-btn" onclick="switchTab('food', this)">🍽️ 美食與餐廳</button>
+</div>
+<!-- ==================== 各城市 OpenStreetMap 互動地圖 ==================== -->
+<div class="section-content" id="salzburg-map">
+<h2 class="section-title">🗺️ 中歐冬日之旅｜各城市互動地圖</h2>
+<div class="salzburg-map-panel">
+<div aria-label="選擇城市" class="city-map-controls" id="cityMapControls"></div>
+<div class="city-map-summary" id="cityMapSummary"></div>
+<div aria-label="中歐行程互動地圖" id="centralEuropeMap" role="application"></div>
+<div class="map-legend"><span><i class="legend-dot" style="background:#c47f58"></i>奧地利</span><span><i class="legend-dot" style="background:#7b8fa1"></i>捷克</span><span><i class="legend-dot" style="background:#9a8068"></i>匈牙利</span></div>
+</div>
+</div>
+<!-- ==================== 1. 每日行程 ==================== -->
+<div class="section-content active" id="itinerary">
+<div class="phase-title">【第一階段】啟程與薩爾斯堡段</div>
+<div class="card">
+<h3>📅 12月5日（週六 / Day 1）｜ 抵達慕尼黑 ➔ 薩爾斯堡 ＆ 市集初體驗</h3>
+<div class="note">
+<strong>💡 核心提醒：</strong><br/>
+                1. 出發前一星期透過 <strong>DB Navigator App</strong> 購買 <a class="map-link" href="https://www.bahn.com" target="_blank">拜仁邦票 (Bayern-Ticket)</a>（涵蓋 S-Bahn 與 RE5）。<br/>
+                2. 聯絡薩爾斯堡酒店，詢問是否提供 <strong>Mobility Ticket</strong>。
+            </div>
+<ul>
+<li><span class="tag transport">航班</span> <strong>00:35</strong> 香港起飛 (EK381) ➔ <strong>05:40</strong> 杜拜 ➔ <strong>08:40</strong> 杜拜起飛 (EK049) ➔ <strong>12:30</strong> 抵達 <a class="map-link transport-link" href="https://www.google.com/maps/search/?api=1&amp;query=Munich+Airport+Terminal+1" target="_blank">慕尼黑機場 (MUC) T1</a></li>
+<li><span class="tag time">12:30–14:15</span> 下機、過關、領行李</li>
+<li><span class="tag time">14:15–15:00</span> 機場地下月台搭 <strong>S-Bahn S1/S8</strong> 至 <a class="map-link transport-link" href="https://www.google.com/maps/search/?api=1&amp;query=München+Hauptbahnhof" target="_blank">慕尼黑中央車站</a>（約 40–45 分鐘）</li>
+<li><span class="tag time">15:00–15:47</span> 預留時間上洗手間、買零食，前往 G1.5–10 月台</li>
+<li><span class="tag time">15:47–17:46</span> 搭乘 <strong>RE5 區域快車</strong> 直達 <a class="map-link transport-link" href="https://www.google.com/maps/search/?api=1&amp;query=Salzburg+Hauptbahnhof" target="_blank">薩爾斯堡 Hbf</a>（約 1 小時 59 分）</li>
+<li><span class="tag">活動</span> 晚上前往 <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Salzburger+Christkindlmarkt" target="_blank">薩爾斯堡基督降臨市集</a>（<a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Domplatz+Salzburg" target="_blank">大教堂廣場</a> / <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Residenzplatz+Salzburg" target="_blank">主教宮廣場</a>）— <strong>21:00 關門</strong></li>
+<li><span class="tag meal">晚餐</span> <a class="map-link meal-link" href="https://www.google.com/maps/search/?api=1&amp;query=Die+Weisse+Salzburg" target="_blank">Die Weisse</a>（可 Google 訂位，營業至 24:00）</li>
+<li><span class="tag hotel">住宿</span> <a class="map-link hotel-link" href="https://www.google.com/maps/search/?api=1&amp;query=Salzburg+Hauptbahnhof+hotel" target="_blank">薩爾斯堡火車站附近</a>（可搭公車 3、5、6、25 號往舊城）</li>
+</ul>
+</div>
+<div class="card">
+<h3>📅 12月6日（週日 / Day 2）｜ 薩爾斯堡一日遊 ＆ 要塞音樂會</h3>
+<div class="note">
+<strong>💡 提醒：</strong> 音樂會已在 Trip.com 預訂。務必 <strong>19:00 前</strong> 搭要塞纜車上山。
+            </div>
+<ul>
+<li><span class="tag">景點</span> <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Mirabellschloss+und+Mirabellgarten+Salzburg" target="_blank">米拉貝爾宮花園</a> — 全天免費開放（大理石大廳週一至週五開放，週日僅花園）</li>
+<li><span class="tag">景點</span> <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Mozarts+Geburtshaus" target="_blank">莫札特出生地 / 故居</a> — <strong>09:00–17:30</strong></li>
+<li><span class="tag">景點</span> <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Salzburger+Dom" target="_blank">薩爾斯堡大教堂</a> — <strong>08:00–19:00</strong>（12:00 常有管風琴演奏）</li>
+<li><span class="tag">活動</span> 19:00 前搭纜車 ➔ <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Festung+Hohensalzburg" target="_blank">霍亨薩爾茨堡要塞</a> 降臨節市集（市集 <strong>19:00 前關門</strong>；要塞冬季約 09:30–17:00，音樂會延長）</li>
+<li><span class="tag">音樂會</span> <strong>20:00</strong> <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Festung+Hohensalzburg+Golden+Hall" target="_blank">要塞黃金廳</a>「Best of Mozart Concert」</li>
+<li><span class="tag meal">午餐</span> <a class="map-link meal-link" href="https://www.google.com/maps/search/?api=1&amp;query=Piazza+Cavalli+Salzburg" target="_blank">Piazza Cavalli</a></li>
+<li><span class="tag hotel">住宿</span> <a class="map-link hotel-link" href="https://www.google.com/maps/search/?api=1&amp;query=Salzburg+hotel" target="_blank">薩爾斯堡</a></li>
+</ul>
+<p style="margin-top:0.6rem;font-size:0.95rem;"><strong>建議流線：</strong> <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Mirabellschloss+und+Mirabellgarten+Salzburg" target="_blank">米拉貝爾宮</a> ➔ <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Mozarts+Geburtshaus" target="_blank">莫札特故居</a> ➔ <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Getreidegasse+Salzburg" target="_blank">糧食胡同</a> ➔ <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Mozartplatz+Salzburg" target="_blank">莫札特廣場</a> / <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Residenzplatz+Salzburg" target="_blank">王宮廣場</a> ➔ <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Salzburger+Dom" target="_blank">大教堂</a>（12:00 管風琴）➔ 19:00 前上山 ➔ 20:00 音樂會</p>
+</div>
+<div class="card hotel">
+<h3>📅 12月7日（週一 / Day 3）｜ 薩爾斯堡 ➔ 聖沃夫岡</h3>
+<div class="note">週一平日公車班次較週末密集。小火車與聖誕 Ferry 可當日買票。</div>
+<ul>
+<li><span class="tag transport">交通</span> 從 <a class="map-link transport-link" href="https://www.google.com/maps/search/?api=1&amp;query=Salzburg+Hbf+Südtiroler+Platz" target="_blank">Salzburg Hbf（Südtiroler Platz, Bus Stand F）</a> 搭乘 <strong>Bus 150</strong> ➔ Strobl Busbahnhof ➔ 轉 <strong>Bus 546</strong> ➔ <a class="map-link transport-link" href="https://www.google.com/maps/search/?api=1&amp;query=St.+Wolfgang+Schafbergbf" target="_blank">Sankt Wolfgang im Salzkammergut Schafbergbf</a></li>
+<li><span class="tag">活動</span> 欣賞奧地利湖區冬日風情與<a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=St.+Wolfgang+Christmas+Market" target="_blank">當地聖誕市集</a>；可乘搭<a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Schafbergbahn+St.+Wolfgang" target="_blank">小火車（Schafbergbahn）</a>；晚上可搭<a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Wolfgangsee+Christmas+Ferry" target="_blank">聖誕 Ferry</a> 去附近三個小城（當日買票）</li>
+<li><span class="tag meal">午餐</span> <a class="map-link meal-link" href="https://www.google.com/maps/search/?api=1&amp;query=Bratwurst+Fischerei+St.+Wolfgang" target="_blank">Bratwurst Fischerei</a>（推薦烤魚 Saibling）</li>
+<li><span class="tag hotel">住宿</span> <a class="map-link hotel-link" href="https://www.google.com/maps/search/?api=1&amp;query=Markt+104,+5360+St.+Wolfgang+im+Salzkammergut" target="_blank">Seehaus family Leifer（萊菲家庭公寓，Markt 104）</a>（Booking.com）</li>
+</ul>
+</div>
+<div class="phase-title">【第二階段】奧地利湖區 ➔ 捷克段</div>
+<div class="card hotel">
+<h3>📅 12月8日（週二 / Day 4）｜ 聖沃夫岡 ➔ 哈修塔特 ➔ 戈紹</h3>
+<div class="note">
+<strong>💡 核心提醒：</strong><br/>
+                1. 向 Seehaus family Leifer 查詢是否提供 <strong>Mobility Ticket</strong>。<br/>
+                2. 提前購買 <strong>OÖVV Freizeit-Ticket OÖ</strong>（上奧地利州休閒一日票，約 €26.50，最多 2 人共用）。<br/>
+                3. 出發公車站：<a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=St.+Wolfgang+Schafbergbf" target="_blank">Sankt Wolfgang im Salzkammergut Schafbergbf</a>
+</div>
+<ul>
+<li><span class="tag transport">交通</span> Sankt Wolfgang im Salzkammergut Schafbergbf ➔ <strong>Bus 546</strong> ➔ Bad Ischl ➔ <strong>Bus 541</strong> 轉 <strong>Bus 543</strong> ➔ Hallstatt Lahn（約 1.5 小時）</li>
+<li><span class="tag">活動</span> 漫步<a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Hallstatt" target="_blank">哈修塔特</a>，欣賞冬日湖光山色</li>
+<li><span class="tag transport">交通</span> Hallstatt ➔ <strong>Bus 541</strong> 至終點 ➔ <a class="map-link transport-link" href="https://www.google.com/maps/search/?api=1&amp;query=Gosausee" target="_blank">戈紹湖 Gosausee</a>（欣賞雪山湖景）</li>
+<li><span class="tag transport">回程</span> Bus 542 ➔ Hallstatt ➔ Bus 641 ➔ Bad Ischl ➔ Bus 546 回 Sankt Wolfgang im Salzkammergut Schafbergbf</li>
+<li><span class="tag hotel">住宿</span> <a class="map-link hotel-link" href="https://www.google.com/maps/search/?api=1&amp;query=Markt+104,+5360+St.+Wolfgang+im+Salzkammergut" target="_blank">Seehaus family Leifer</a></li>
+</ul>
+</div>
+<div class="card">
+<h3>📅 12月9日（週三 / Day 5）｜ 聖沃夫岡 ➔ 巴特伊舍 ➔ CK小鎮</h3>
+<div class="note">
+<strong>💡 交通提示：</strong><br/>
+                1. 由 Sankt Wolfgang im Salzkammergut 搭 <strong>Bus 546</strong>（建議 07:30 / 08:30）至 Bad Ischl（單程約 €4–6，上車買票）。<br/>
+                2. <strong>09:15</strong> 準時搭乘已預訂的 <strong>CK Shuttle / 接駁小巴</strong> 直達 Český Krumlov（車程約 3 小時）。
+            </div>
+<ul>
+<li><span class="tag">景點</span> <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=St.+Vitus+Church+Cesky+Krumlov" target="_blank">聖維特大教堂</a>（免費）➔ <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Plague+Column+Cesky+Krumlov" target="_blank">黑死病紀念柱</a> ➔ <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Cloak+Bridge+Cesky+Krumlov" target="_blank">斗篷橋</a> ➔ <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Cesky+Krumlov+Castle" target="_blank">庫倫洛夫城堡</a>（可當日買票，約 16:30 前關門）</li>
+<li><span class="tag meal">晚餐</span> <a class="map-link meal-link" href="https://www.google.com/maps/search/?api=1&amp;query=Vla%C5%A1sk%C3%BD+Dv%C5%AFr+%C4%8Cesk%C3%BD+Krumlov" target="_blank">Vlašský Dvůr</a>（烤豬肘、油封鴨腿 + 烤鱒魚）</li>
+<li><span class="tag hotel">住宿</span> <a class="map-link hotel-link" href="https://www.google.com/maps/search/?api=1&amp;query=Landauer+Cesky+Krumlov" target="_blank">蘭道爾膳食公寓 (Landauer)</a>（Booking.com）</li>
+</ul>
+</div>
+<div class="card">
+<h3>📅 12月10日（週四 / Day 6）｜ CK小鎮 ➔ 布拉格 ＆ 市集初探</h3>
+<ul>
+<li><span class="tag transport">交通</span> <strong>09:30–12:05</strong> 從 <a class="map-link transport-link" href="https://www.google.com/maps/search/?api=1&amp;query=%C4%8Cesk%C3%BD+Krumlov+bus+station" target="_blank">Český Krumlov 巴士站</a> 搭乘 <strong>FlixBus</strong> 直達 <a class="map-link transport-link" href="https://www.google.com/maps/search/?api=1&amp;query=Prague+Main+Station" target="_blank">布拉格中央車站</a>（約 2h35m）</li>
+<li><span class="tag">市集</span> <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Old+Town+Square+Christmas+Market+Prague" target="_blank">老城廣場</a> / <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Wenceslas+Square+Christmas+Market+Prague" target="_blank">瓦茨拉夫廣場聖誕市集</a> — 約 <strong>10:00–22:00</strong></li>
+<li><span class="tag meal">餐飲</span> <a class="map-link meal-link" href="https://www.google.com/maps/search/?api=1&amp;query=Restaurace+Hybernsk%C3%A1+Prague" target="_blank">Restaurace Hybernská</a>（建議 Google 訂位）</li>
+<li><span class="tag hotel">住宿</span> <a class="map-link hotel-link" href="https://maps.app.goo.gl/RHTFmfKTbW8Hhq6N9" target="_blank">Praha 2 Airbnb</a></li>
+</ul>
+</div>
+<div class="card">
+<h3>📅 12月11日（週五 / Day 7）｜ 布拉格城堡區深度漫步</h3>
+<div class="note"><strong>💡 提醒：</strong> 務必提前購買城堡 <strong>Circuit B</strong> 路線門票。</div>
+<ul>
+<li><span class="tag">景點</span> <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Prague+Castle" target="_blank">布拉格城堡區（Circuit B）</a> — 園區 06:00–22:00；室內（<a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=St.+Vitus+Cathedral+Prague" target="_blank">聖維特主教座堂</a>、<a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Old+Royal+Palace+Prague+Castle" target="_blank">舊皇宮</a>、<a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Golden+Lane+Prague" target="_blank">黃金巷</a>、<a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Lobkowicz+Palace+Prague" target="_blank">洛克維茲宮</a>）冬季 <strong>09:00–16:00</strong></li>
+<li><span class="tag">午後</span> <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Prague's+Narrowest+Alley" target="_blank">Prague's Narrowest Alley</a> ➔ <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Charles+Bridge+Prague" target="_blank">查理大橋</a> ➔ <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Lesser+Town+Bridge+Tower+Prague" target="_blank">小城橋塔</a>（約 10:00–18:00）➔ <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=St.+Nicholas+Church+Mala+Strana+Prague" target="_blank">聖尼古拉教堂</a>（約 09:00–16:00）➔ <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Vrtba+Garden+Prague" target="_blank">維巴庭園</a> ➔ <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Lennon+Wall+Prague" target="_blank">列儂牆</a></li>
+<li><span class="tag hotel">住宿</span> <a class="map-link hotel-link" href="https://maps.app.goo.gl/RHTFmfKTbW8Hhq6N9" target="_blank">Praha 2 Airbnb</a></li>
+</ul>
+</div>
+<div class="card">
+<h3>📅 12月12日（週六 / Day 8）｜ 布拉格藝術與地標漫步</h3>
+<ul>
+<li><span class="tag">景點</span> <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Smetana+Museum+Prague" target="_blank">斯美塔那博物館</a> — 約 10:00–17:00（週二休館）</li>
+<li><span class="tag">景點</span> <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Powder+Tower+Prague" target="_blank">火藥塔</a>（登塔約 10:00–18:00）➔ <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Church+of+Our+Lady+before+Tyn+Prague" target="_blank">泰恩教堂</a>（約 10:00–17:00）➔ <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Old+Town+Square+Astronomical+Clock+Prague" target="_blank">老城廣場與天文鐘</a>（表演 09:00–23:00）</li>
+<li><span class="tag">景點</span> <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Havelske+trziste+Prague" target="_blank">哈維爾集市</a>（約 07:00–18:00）➔ <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Mucha+Museum+Prague" target="_blank">穆夏博物館</a>（約 10:00–18:00）</li>
+<li><span class="tag">戶外</span> 街頭雕塑：<a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Man+Hanging+Out+Prague" target="_blank">Man Hanging Out</a>、<a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Franz+Kafka+Head+Prague" target="_blank">卡夫卡旋轉頭像</a>、<a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Slight+Uncertainty+Man+Prague" target="_blank">Slight Uncertainty Man</a> ➔ <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Dancing+House+Prague" target="_blank">跳舞的房子</a>（頂樓約 10:00–19:00）</li>
+<li><span class="tag hotel">住宿</span> <a class="map-link hotel-link" href="https://maps.app.goo.gl/RHTFmfKTbW8Hhq6N9" target="_blank">Praha 2 Airbnb</a></li>
+</ul>
+</div>
+<div class="phase-title">【第三階段】維也納浪漫音樂、藝術與聖誕市集（12月13–15日）</div>
+<div class="card">
+<h3>📅 12月13日（週日 / Day 9）｜ 布拉格 ➔ 維也納 ＆ 老城區精華</h3>
+<div class="note"><strong>交通：</strong> <strong>09:01–13:18</strong> 從 Prague hl.n. 搭乘 <strong>RJ 1033 Railjet（RegioJet）</strong> 直達 Wien Hbf（約 4h17m）。</div>
+<ul>
+<li><span class="tag">景點</span> <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Ankeruhr+Vienna" target="_blank">安可鐘 Ankeruhr</a>（戶外免費）</li>
+<li><span class="tag">景點</span> <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=St.+Stephen's+Cathedral+Vienna" target="_blank">聖史蒂芬主教座堂</a> — 週日觀光約 13:00–16:30；南塔 09:00–17:30；<a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Stephansplatz+Christmas+Market+Vienna" target="_blank">廣場聖誕市集</a> 11:00–21:00（中文語音導覽約 €8）</li>
+<li><span class="tag">景點</span> <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Pestsaule+Vienna" target="_blank">黑死病紀念柱</a> ➔ <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Graben+Vienna" target="_blank">格拉本大街</a>覓食逛街</li>
+<li><span class="tag">景點</span> <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Albertina+Museum+Vienna" target="_blank">阿爾貝蒂娜博物館</a> — 10:00–18:00，約 €20（丟勒《野兔》真跡）</li>
+<li><span class="tag">晚間</span> <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Wiener+Christkindlmarkt+Rathausplatz" target="_blank">市政廳廣場聖誕市集</a> — 開放至 22:00</li>
+<li><span class="tag hotel">住宿</span> <a class="map-link hotel-link" href="https://www.google.com/maps/place/Premier+Inn+Wien+City+Hauptbahnhof" target="_blank">Premier Inn Wien City Hauptbahnhof</a></li>
+</ul>
+</div>
+<div class="card">
+<h3>📅 12月14日（週一 / Day 10）｜ 皇宮、博物館區與經典地標</h3>
+<ul>
+<li><span class="tag">景點</span> <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Hofburg+Wien+Sisi+Museum" target="_blank">霍夫堡宮 ＆ 茜茜公主博物館</a> — 09:30–17:00（最後入場 16:00），約 €18.5 起</li>
+<li><span class="tag">景點</span> <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Mozart+Monument+Burggarten+Vienna" target="_blank">莫札特紀念碑</a>（城堡花園 Burggarten，戶外免費）</li>
+<li><span class="tag">景點</span> <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Leopold+Museum+Vienna" target="_blank">利奧波德博物館</a> — 10:00–18:00（席勒、克里姆特）</li>
+<li><span class="tag">景點</span> <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Kunsthistorisches+Museum+Vienna" target="_blank">藝術史博物館</a> — 週二至週日 10:00–18:00（週四至 21:00），€22（勃魯蓋爾《巴別塔》、拉斐爾）</li>
+<li><span class="tag">晚間</span> <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Spittelberg+Christmas+Market+Vienna" target="_blank">斯皮特爾貝格聖誕市集</a> — 14:00–21:30</li>
+<li><span class="tag hotel">住宿</span> <a class="map-link hotel-link" href="https://www.google.com/maps/place/Premier+Inn+Wien+City+Hauptbahnhof" target="_blank">Premier Inn Wien City Hauptbahnhof</a></li>
+</ul>
+</div>
+<div class="card">
+<h3>📅 12月15日（週二 / Day 11）｜ 皇宮名畫與金色大廳之夜</h3>
+<div class="note"><strong>💡 購票提醒：</strong> 提前預訂 Schloss Schönbrunn Ticket（約 €42）；美景宮建議買三館套票。</div>
+<ul>
+<li><span class="tag">景點</span> <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Schloss+Sch%C3%B6nbrunn+Wien" target="_blank">美泉宮</a> — 宮殿 08:30–17:00；花園 06:30–17:30；聖誕市集 10:00–21:00</li>
+<li><span class="tag">景點</span> <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Naschmarkt+Vienna" target="_blank">納旭市場</a> — 週一至週五 06:00–19:30</li>
+<li><span class="tag">景點</span> <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Karlskirche+Vienna" target="_blank">卡爾教堂</a> — 週一至六 09:00–18:00；週日 11:00–19:00；藝術聖誕市集 12:00–20:00（約 €9.5 含電梯）</li>
+<li><span class="tag">景點</span> <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Belvedere+Palace+Vienna" target="_blank">美景宮</a> — 上美景 09:00–18:00；下美景 10:00–18:00；聖誕市集 週一至五 11:00–21:00</li>
+<li><span class="tag meal">下午茶</span> <a class="map-link meal-link" href="https://www.google.com/maps/search/?api=1&amp;query=Aufzug+Caf%C3%A9+Vienna" target="_blank">Aufzug Café</a>（推薦蘋果卷）</li>
+<li><span class="tag">活動</span> <strong>19:30</strong> CHRISTMAS IM WIENER MUSIKVEREIN 於 <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Wiener+Musikverein" target="_blank">Großer Musikvereinssaal</a></li>
+<li><span class="tag hotel">住宿</span> <a class="map-link hotel-link" href="https://www.google.com/maps/place/Premier+Inn+Wien+City+Hauptbahnhof" target="_blank">Premier Inn Wien City Hauptbahnhof</a></li>
+</ul>
+</div>
+<div class="phase-title">【第四階段】布達佩斯（12月16日）</div>
+<div class="card">
+<h3>📅 12月16日（週三 / Day 12）｜ 維也納 ➔ 布達佩斯 ＆ 地標全景</h3>
+<div class="note"><strong>交通：</strong> <strong>10:27–12:58</strong> 從 Wien Hbf 搭乘 <strong>RJ 1031 Railjet</strong> 至 Budapest Kelenföld（約 2h31m）。抵達後先 Check-in 再觀光。</div>
+<ul>
+<li><span class="tag">景點</span> <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=St.+Stephen's+Basilica+Budapest" target="_blank">聖伊什特萬聖殿</a> — 週一至六 09:00–17:45；週日 13:00–17:45；廣場有聖誕市集</li>
+<li><span class="tag">景點</span> <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Orsz%C3%A1gh%C3%A1z+Budapest" target="_blank">匈牙利國會大廈</a> — 外觀全天；內部需預約導覽</li>
+<li><span class="tag">景點</span> <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Fisherman's+Bastion+Budapest" target="_blank">漁人堡</a> — 下層全天；上層約 09:00–19:00</li>
+<li><span class="tag">景點</span> <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Maty%C3%A1s-templom+Budapest" target="_blank">馬加什教堂</a> ＆ <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Budav%C3%A1ri+Palota+Budapest" target="_blank">布達城堡</a> — 教堂依時段開放；城堡戶外全天</li>
+<li><span class="tag">景點</span> <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Central+Market+Hall+Budapest" target="_blank">中央市場</a> — 週一至五 06:00–18:00；週六至 15:00（週三正常營業）</li>
+<li><span class="tag">晚間</span> <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Danube+River+Night+Cruise+Budapest" target="_blank">多瑙河夜間遊船</a> — 多數班次 18:00–21:30（建議提前預訂）</li>
+<li><span class="tag meal">晚餐</span> <a class="map-link meal-link" href="https://www.google.com/maps/search/?api=1&amp;query=Comme+chez+soi+Budapest" target="_blank">Comme chez soi</a>（需訂位）</li>
+<li><span class="tag hotel">住宿</span> <a class="map-link hotel-link" href="https://www.google.com/maps/search/?api=1&amp;query=Florin+Apart+Hotel+Budapest" target="_blank">Florin Apart Hotel</a></li>
+</ul>
+</div>
+<div class="card reminder">
+<h3>📅 12月17日 – 12月21日（Day 13–17）</h3>
+<p>後續行程（布達佩斯延伸、回程或其他目的地）請依實際預訂更新。目前手冊已涵蓋至 Day 12 布達佩斯精華。</p>
+<p style="margin-top:0.5rem;color:var(--morandi-text-light);font-size:0.95rem;">若有新增景點或交通細節，可再提供給我更新本手冊。</p>
+</div>
+</div>
+<!-- ==================== 2. 交通攻略 ==================== -->
+<div class="section-content" id="transport">
+<h2 class="section-title">🚆 交通攻略與接駁車路線總表</h2>
+<div class="card transport">
+<h3>德國 / 奧地利段（Day 1–3）</h3>
+<table class="route-table">
+<tr>
+<th>日期</th>
+<th>路段</th>
+<th>交通方式</th>
+<th>時間</th>
+<th>備註</th>
+</tr>
+<tr>
+<td>12/5 (Day 1)</td>
+<td>慕尼黑機場 ➔ 中央車站</td>
+<td>S-Bahn S1 或 S8</td>
+<td>約 40–45 分</td>
+<td>拜仁邦票涵蓋</td>
+</tr>
+<tr>
+<td>12/5 (Day 1)</td>
+<td>慕尼黑 Hbf ➔ 薩爾斯堡 Hbf</td>
+<td>RE5 區域快車</td>
+<td>15:47 ➔ 17:46（約 1h59m）</td>
+<td>直達，月台 G1.5–10</td>
+</tr>
+<tr>
+<td>12/5–6</td>
+<td>薩爾斯堡市區</td>
+<td>公車 3 / 5 / 6 / 25 號</td>
+<td>—</td>
+<td>或使用酒店 Mobility Ticket</td>
+</tr>
+<tr>
+<td>12/7 (Day 3)</td>
+<td>薩爾斯堡 ➔ 聖沃夫岡</td>
+<td>Bus 150 ➔ 轉 Bus 546</td>
+<td>依當日班次</td>
+<td>Südtiroler Platz (Stand F) ➔ Strobl ➔ Sankt Wolfgang im Salzkammergut Schafbergbf</td>
+</tr>
+</table>
+<p style="margin-top:0.7rem;"><strong>票券：</strong> <a class="map-link" href="https://www.bahn.com" target="_blank">DB 拜仁邦票 (Bayern-Ticket)</a> — 建議出發前一週在 DB Navigator App 購買。</p>
+</div>
+<div class="card transport">
+<h3>奧地利湖區一日遊（Day 4 · 12月8日）</h3>
+<table class="route-table">
+<tr>
+<th>日期</th>
+<th>路段</th>
+<th>交通方式</th>
+<th>時間</th>
+<th>備註</th>
+</tr>
+<tr>
+<td>12/8 (Day 4)</td>
+<td>Sankt Wolfgang im Salzkammergut Schafbergbf ➔ Bad Ischl</td>
+<td>Bus 546</td>
+<td>依當日班次</td>
+<td>出發站為 Schafbergbf</td>
+</tr>
+<tr>
+<td>12/8 (Day 4)</td>
+<td>Bad Ischl ➔ Hallstatt Lahn</td>
+<td>Bus 541 ➔ 轉 Bus 543</td>
+<td>約 1.5 小時</td>
+<td>—</td>
+</tr>
+<tr>
+<td>12/8 (Day 4)</td>
+<td>Hallstatt ➔ Gosau</td>
+<td>Bus 541 至終點</td>
+<td>—</td>
+<td>欣賞雪山湖景</td>
+</tr>
+<tr>
+<td>12/8 (Day 4)</td>
+<td>回程</td>
+<td>Bus 542 ➔ Hallstatt ➔ Bus 641 ➔ Bad Ischl ➔ Bus 546</td>
+<td>—</td>
+<td>回 Sankt Wolfgang im Salzkammergut Schafbergbf</td>
+</tr>
+</table>
+<div class="note">
+<strong>票券：</strong> 提前購買 <strong>OÖVV Freizeit-Ticket OÖ</strong>（上奧地利州休閒一日票，約 €26.50，最多 2 成人共用）。<br/>
+                建議向 Seehaus family Leifer 查詢是否提供 Mobility Ticket。
+            </div>
+</div>
+<div class="card transport">
+<h3>湖區 ➔ 捷克 CK小鎮（Day 5 · 12月9日）</h3>
+<table class="route-table">
+<tr>
+<th>日期</th>
+<th>路段</th>
+<th>交通方式</th>
+<th>時間</th>
+<th>備註</th>
+</tr>
+<tr>
+<td>12/9 (Day 5)</td>
+<td>Sankt Wolfgang im Salzkammergut ➔ Bad Ischl</td>
+<td>Bus 546</td>
+<td>建議 07:30 或 08:30</td>
+<td>單程約 €4–6（上車買票）</td>
+</tr>
+<tr>
+<td>12/9 (Day 5)</td>
+<td>Bad Ischl ➔ Český Krumlov</td>
+<td><strong>CK Shuttle / 接駁小巴</strong></td>
+<td><strong>09:15 準時出發</strong></td>
+<td>已預訂，車程約 3 小時</td>
+</tr>
+</table>
+</div>
+<div class="card transport">
+<h3>捷克跨國與長途段（Day 6 &amp; Day 9）</h3>
+<table class="route-table">
+<tr>
+<th>日期</th>
+<th>路段</th>
+<th>交通方式</th>
+<th>時間</th>
+<th>備註</th>
+</tr>
+<tr>
+<td>12/10 (Day 6)</td>
+<td>CK小鎮 ➔ 布拉格</td>
+<td>FlixBus / 直達長途巴士</td>
+<td>09:30–12:05（約 2h35m）</td>
+<td>從 CK 巴士站出發</td>
+</tr>
+<tr>
+<td>12/13 (Day 9)</td>
+<td>布拉格 ➔ 維也納</td>
+<td>RJ 1033 Railjet（RegioJet）</td>
+<td>09:01–13:18（約 4h17m）</td>
+<td>Prague hl.n. ➔ Wien Hbf</td>
+</tr>
+</table>
+</div>
+<div class="card transport">
+<h3>維也納 ➔ 布達佩斯（Day 12 · 12月16日）</h3>
+<table class="route-table">
+<tr>
+<th>日期</th>
+<th>路段</th>
+<th>交通方式</th>
+<th>時間</th>
+<th>備註</th>
+</tr>
+<tr>
+<td>12/16 (Day 12)</td>
+<td>Vienna Hbf ➔ Budapest Kelenföld</td>
+<td>RJ 1031 Railjet</td>
+<td>10:27–12:58（約 2h31m）</td>
+<td>抵達後先 Check-in 再觀光</td>
+</tr>
+</table>
+</div>
+<div class="card transport">
+<h3>實用連結與 App 建議</h3>
+<ul>
+<li><a class="map-link" href="https://www.bahn.com" target="_blank">Deutsche Bahn / 拜仁邦票</a></li>
+<li><a class="map-link" href="https://www.oebb.at" target="_blank">ÖBB 奧地利鐵路</a></li>
+<li><a class="map-link" href="https://www.regiojet.com" target="_blank">RegioJet</a></li>
+<li><a class="map-link" href="https://www.flixbus.com" target="_blank">FlixBus</a></li>
+<li>App 推薦：DB Navigator、ÖBB、Google Maps、Citymapper</li>
+</ul>
+</div>
+</div>
+<!-- ==================== 3. 行前準備清單 ==================== -->
+<div class="section-content" id="checklist">
+<h2 class="section-title">☑️ 行前準備與文件清單（可互動打勾）</h2>
+<div class="card">
+<h3>證件與票券</h3>
+<div class="checklist-item"><input onchange="toggleCheck(this)" type="checkbox"/><span>護照（效期至少 6 個月以上）</span></div>
+<div class="checklist-item"><input onchange="toggleCheck(this)" type="checkbox"/><span>申根旅遊醫療保險證明</span></div>
+<div class="checklist-item"><input onchange="toggleCheck(this)" type="checkbox"/><span>德國拜仁邦票 (Bayern-Ticket) — DB Navigator App 購買並下載</span></div>
+<div class="checklist-item"><input onchange="toggleCheck(this)" type="checkbox"/><span>奧地利上奧地利州休閒一日票 (OÖVV Freizeit-Ticket OÖ)</span></div>
+<div class="checklist-item"><input onchange="toggleCheck(this)" type="checkbox"/><span>薩爾斯堡要塞音樂會門票（Trip.com）</span></div>
+<div class="checklist-item"><input onchange="toggleCheck(this)" type="checkbox"/><span>布拉格城堡 Circuit B 路線預售門票</span></div>
+<div class="checklist-item"><input onchange="toggleCheck(this)" type="checkbox"/><span>CK Shuttle / 接駁小巴預約憑證</span></div>
+<div class="checklist-item"><input onchange="toggleCheck(this)" type="checkbox"/><span>RegioJet / Railjet (RJ 1033) 布拉格➔維也納火車票</span></div>
+<div class="checklist-item"><input onchange="toggleCheck(this)" type="checkbox"/><span>RJ 1031 維也納➔布達佩斯火車票</span></div>
+<div class="checklist-item"><input onchange="toggleCheck(this)" type="checkbox"/><span>美泉宮 Schloss Schönbrunn Ticket（約 €42，提前預訂）</span></div>
+<div class="checklist-item"><input onchange="toggleCheck(this)" type="checkbox"/><span>美景宮三館套票（3-Palace Ticket）</span></div>
+<div class="checklist-item"><input onchange="toggleCheck(this)" type="checkbox"/><span>阿爾貝蒂娜 / 藝術史博物館等門票（可現場或官網）</span></div>
+<div class="checklist-item"><input onchange="toggleCheck(this)" type="checkbox"/><span>多瑙河夜間遊船票（建議提前預訂）</span></div>
+<div class="checklist-item"><input onchange="toggleCheck(this)" type="checkbox"/><span>FlixBus CK➔布拉格車票</span></div>
+</div>
+<div class="card">
+<h3>住宿與聯絡確認</h3>
+<div class="checklist-item"><input onchange="toggleCheck(this)" type="checkbox"/><span>確認薩爾斯堡酒店是否提供 Mobility Ticket</span></div>
+<div class="checklist-item"><input onchange="toggleCheck(this)" type="checkbox"/><span>確認聖沃夫岡 Seehaus family Leifer 住宿與公車站資訊</span></div>
+<div class="checklist-item"><input onchange="toggleCheck(this)" type="checkbox"/><span>確認 CK小鎮 Landauer 酒店預訂</span></div>
+<div class="checklist-item"><input onchange="toggleCheck(this)" type="checkbox"/><span>確認布拉格 Praha 2 Airbnb 入住細節</span></div>
+<div class="checklist-item"><input onchange="toggleCheck(this)" type="checkbox"/><span>確認維也納 Premier Inn Wien City Hauptbahnhof</span></div>
+<div class="checklist-item"><input onchange="toggleCheck(this)" type="checkbox"/><span>確認布達佩斯 Florin Apart Hotel</span></div>
+</div>
+<div class="card">
+<h3>冬日衣物與裝備</h3>
+<div class="checklist-item"><input onchange="toggleCheck(this)" type="checkbox"/><span>防風防水保暖外套（羽絨服）</span></div>
+<div class="checklist-item"><input onchange="toggleCheck(this)" type="checkbox"/><span>發熱衣褲（多套替換）</span></div>
+<div class="checklist-item"><input onchange="toggleCheck(this)" type="checkbox"/><span>防滑耐走雪靴 / 登山鞋</span></div>
+<div class="checklist-item"><input onchange="toggleCheck(this)" type="checkbox"/><span>毛帽、圍巾、防風保暖手套</span></div>
+<div class="checklist-item"><input onchange="toggleCheck(this)" type="checkbox"/><span>行動電源（寒冷天氣耗電快）</span></div>
+<div class="checklist-item"><input onchange="toggleCheck(this)" type="checkbox"/><span>歐規圓孔雙腳轉接插頭（Type C/F）</span></div>
+<div class="checklist-item"><input onchange="toggleCheck(this)" type="checkbox"/><span>個人藥品、防寒護唇膏、保濕用品</span></div>
+<div class="checklist-item"><input onchange="toggleCheck(this)" type="checkbox"/><span>輕便背包（日間觀光用）</span></div>
+</div>
+<div class="card">
+<h3>App 與數位工具</h3>
+<div class="checklist-item"><input onchange="toggleCheck(this)" type="checkbox"/><span>DB Navigator（德國鐵路）</span></div>
+<div class="checklist-item"><input onchange="toggleCheck(this)" type="checkbox"/><span>ÖBB / Scotty（奧地利）</span></div>
+<div class="checklist-item"><input onchange="toggleCheck(this)" type="checkbox"/><span>Google Maps / Offline 地圖下載</span></div>
+<div class="checklist-item"><input onchange="toggleCheck(this)" type="checkbox"/><span>RegioJet / FlixBus App</span></div>
+<div class="checklist-item"><input onchange="toggleCheck(this)" type="checkbox"/><span>Booking.com / Airbnb 確認信下載離線</span></div>
+<div class="checklist-item"><input onchange="toggleCheck(this)" type="checkbox"/><span>翻譯 App（離線德文 / 捷克文 / 匈牙利文）</span></div>
+</div>
+</div>
+<!-- ==================== 4. 景點地圖與名單 ==================== -->
+<div class="section-content" id="attractions">
+<h2 class="section-title">📍 景點地圖與開放時間指引</h2>
+<div aria-label="按城市篩選景點" class="attraction-city-filters" id="attractionCityFilters"><button class="attraction-city-btn active" data-attraction-city="all" type="button">🌍 全部景點</button><button class="attraction-city-btn" data-attraction-city="salzburg" type="button">🇦🇹 Salzburg</button><button class="attraction-city-btn" data-attraction-city="lake" type="button">🇦🇹 奧地利湖區</button><button class="attraction-city-btn" data-attraction-city="czech" type="button">🇨🇿 捷克</button><button class="attraction-city-btn" data-attraction-city="vienna" type="button">🇦🇹 Vienna</button><button class="attraction-city-btn" data-attraction-city="budapest" type="button">🇭🇺 Budapest</button></div>
+<!-- 薩爾斯堡 -->
+<div class="city-group">
+<h3>🇦🇹 Salzburg</h3>
+<div class="attr-grid">
+<div class="attr-card">
+<img alt="米拉貝爾宮" src="https://commons.wikimedia.org/wiki/Special:FilePath/Salzburg_Mirabellgarten_Festung.jpg?width=640"/>
+<div class="body">
+<h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=Mirabellschloss+und+Mirabellgarten+Salzburg" rel="noopener" target="_blank">米拉貝爾宮花園 <span lang="en">Mirabellschloss und Mirabellgarten</span></a></h4>
+<div class="hours">🕐 全天免費開放（戶外）</div>
+<div class="desc">著名的巴洛克花園與天使階梯，大理石大廳週一至週五開放。</div>
+</div>
+</div>
+<div class="attr-card">
+<img alt="薩爾斯堡大教堂" src="https://commons.wikimedia.org/wiki/Special:FilePath/Salzburger_Dom.jpg?width=640"/>
+<div class="body">
+<h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=Salzburger+Dom" rel="noopener" target="_blank">薩爾斯堡大教堂 <span lang="en">Salzburger Dom</span></a></h4>
+<div class="hours">🕐 08:00 – 19:00（週日中午管風琴演奏）</div>
+<div class="desc">巴洛克式宏偉建築，莫札特受洗之地，冬季廣場前舉辦溫馨聖誕市集。</div>
+</div>
+</div>
+<div class="attr-card">
+<img alt="霍亨薩爾茨堡要塞" src="https://commons.wikimedia.org/wiki/Special:FilePath/Fortress_Hohensalzburg_above_the_Salzach.jpg?width=640"/>
+<div class="body">
+<h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=Festung+Hohensalzburg" rel="noopener" target="_blank">霍亨薩爾茨堡要塞 <span lang="en">Festung Hohensalzburg</span></a></h4>
+<div class="hours">🕐 冬季約 09:30–17:00（市集 19:00 前）</div>
+<div class="desc">歐洲最大中世紀城堡之一，可搭纜車上山，夜間有莫札特音樂會。</div>
+</div>
+</div>
+<div class="attr-card">
+<img alt="莫札特故居" src="https://commons.wikimedia.org/wiki/Special:FilePath/Salzburg_Mozarts_Geburtshaus_R%C3%BCckseite.jpg?width=640"/>
+<div class="body">
+<h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=Mozarts+Geburtshaus" rel="noopener" target="_blank">莫札特出生地 / 故居 <span lang="en">Mozarts Geburtshaus / Mozart-Wohnhaus</span></a></h4>
+<div class="hours">🕐 09:00 – 17:30</div>
+<div class="desc">莫札特誕生與成長的地方，展出珍貴手稿與樂器。</div>
+</div>
+</div>
+<div class="attr-card"><img alt="薩爾斯堡聖誕市集" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Salzburg_-_Altstadt_-_Domplatz_Christkindlmarkt_-_2023_12_12-14.jpg?width=640"/><div class="body"><h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=Salzburg+Christkindlmarkt" rel="noopener" target="_blank">薩爾斯堡聖誕市集 <span lang="en">Salzburger Christkindlmarkt</span></a></h4><div class="hours">🕐 2026/11/19–2027/01/01：週一至四 10:00–20:30；週五 10:00–21:00；週六 09:00–21:00；週日及假日 09:00–20:30（12/24 09:00–15:00）</div><div class="desc">聖誕期間的傳統市集，主要分布於主教座堂廣場與主教宮廣場。</div></div></div></div>
+</div>
+<!-- 奧地利湖區 -->
+<div class="city-group">
+<h3>🇦🇹 奧地利湖區（聖沃夫岡・哈修塔特・戈紹）</h3>
+<div class="attr-grid">
+<div class="attr-card">
+<img alt="哈修塔特" src="https://commons.wikimedia.org/wiki/Special:FilePath/Hallstatt,_Austria_(Unsplash_rU2-7y7_dbo).jpg?width=640"/>
+<div class="body">
+<h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=Hallstatt+Lahn" rel="noopener" target="_blank">哈修塔特 Hallstatt <span lang="en">Hallstatt</span></a></h4>
+<div class="hours">🕐 戶外小鎮全天開放</div>
+<div class="desc">世界文化遺產，被譽為來自天堂的明信片小鎮，冬雪覆蓋極具詩意。</div>
+</div>
+</div>
+<div class="attr-card">
+<img alt="戈紹湖" src="https://commons.wikimedia.org/wiki/Special:FilePath/GOSAU-AUSTRIA-JAEG-PAUL-208_Gosausee.jpg?width=640"/>
+<div class="body">
+<h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=Gosausee" rel="noopener" target="_blank">戈紹湖 Gosausee <span lang="en">Gosausee</span></a></h4>
+<div class="hours">🕐 戶外全天開放</div>
+<div class="desc">壯麗的阿爾卑斯雪山與高山湖泊冬景，湖區最美視角之一。</div>
+</div>
+</div>
+<div class="attr-card">
+<img alt="聖沃夫岡" src="https://commons.wikimedia.org/wiki/Special:FilePath/St._Wolfgang_im_Salzkammergut.jpg?width=640"/>
+<div class="body">
+<h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=St.+Wolfgang+im+Salzkammergut" rel="noopener" target="_blank">聖沃夫岡 Sankt Wolfgang im Salzkammergut <span lang="en">Sankt Wolfgang im Salzkammergut</span></a></h4>
+<div class="hours">🕐 戶外全天開放</div>
+<div class="desc">湖畔溫馨小鎮，可欣賞湖區冬日風情與當地聖誕市集。</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 捷克 -->
+<div class="city-group">
+<h3>🇨🇿 捷克（CK小鎮・布拉格）</h3>
+<div class="attr-grid">
+<div class="attr-card">
+<img alt="庫倫洛夫" src="https://commons.wikimedia.org/wiki/Special:FilePath/%C4%8Cesk%C3%BD_Krumlov_Castle,_Czechia,_20250504_1248_8849.jpg?width=640"/>
+<div class="body">
+<h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=Cesky+Krumlov+Castle" rel="noopener" target="_blank">庫倫洛夫城堡區 <span lang="en">Zámek Český Krumlov</span></a></h4>
+<div class="hours">🕐 戶外全天 / 塔樓約 09:00–16:00</div>
+<div class="desc">中世紀石板街道與伏爾塔瓦河畔，童話般的捷克小鎮。</div>
+</div>
+</div>
+<div class="attr-card">
+<img alt="布拉格城堡" src="https://commons.wikimedia.org/wiki/Special:FilePath/Prague_Castle.jpg?width=640"/>
+<div class="body">
+<h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=Prague+Castle" rel="noopener" target="_blank">布拉格城堡區 <span lang="en">Pražský hrad</span></a></h4>
+<div class="hours">🕐 園區 06:00–22:00 / 展館 09:00–16:00</div>
+<div class="desc">含聖維特主教座堂、黃金巷與舊皇宮，俯瞰布拉格紅瓦屋頂的最佳視角。</div>
+</div>
+</div>
+<div class="attr-card">
+<img alt="查理大橋" src="https://commons.wikimedia.org/wiki/Special:FilePath/Praha_-_Karl%C5%AFv_most.jpg?width=640"/>
+<div class="body">
+<h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=Charles+Bridge+Prague" rel="noopener" target="_blank">查理大橋 &amp; 天文鐘 <span lang="en">Karlův most &amp; Pražský orloj</span></a></h4>
+<div class="hours">🕐 全天開放（天文鐘表演 09:00–23:00）</div>
+<div class="desc">布拉格最具代表性的地標，聖誕市集與老城廣場氛圍絕佳。</div>
+</div>
+</div>
+<div class="attr-card">
+<img alt="跳舞的房子" src="https://commons.wikimedia.org/wiki/Special:FilePath/Dancing_House.jpg?width=640"/>
+<div class="body">
+<h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=Dancing+House+Prague" rel="noopener" target="_blank">跳舞的房子 &amp; 街頭雕塑 <span lang="en">Tančící dům &amp; pouliční sochy</span></a></h4>
+<div class="hours">🕐 外觀全天 / 頂樓約 10:00–19:00</div>
+<div class="desc">卡夫卡頭像、懸掛的男人等現代藝術與地標建築。</div>
+</div>
+</div>
+<div class="attr-card"><img alt="聖維特大教堂" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/St._Vitus_Cathedral.jpg?width=640"/><div class="body"><h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=St+Vitus+Cathedral+Prague" rel="noopener" target="_blank">聖維特大教堂 <span lang="en">Katedrála svatého Víta</span></a></h4><div class="hours">🕐 布拉格城堡冬季建築開放時間通常為 09:00–16:00；宗教活動期間觀光入場或受限，請查看城堡當日公告</div><div class="desc">布拉格城堡內的重要哥德式教堂，也是城市最具代表性的地標之一。</div></div></div><div class="attr-card"><img alt="黑死病紀念柱（布拉格）" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Mari%C3%A1nsk%C3%BD_sloup,_Starom%C4%9Bstsk%C3%A9_n%C3%A1m%C4%9Bst%C3%AD,_Praha.jpg?width=640"/><div class="body"><h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=Plague+Column+Prague" rel="noopener" target="_blank">黑死病紀念柱（布拉格） <span lang="en">Morový sloup</span></a></h4><div class="hours">🕐 戶外公共廣場景點，通常全天可參觀</div><div class="desc">老城區歷史街景中的紀念柱，可與周邊廣場及街道一同遊覽。</div></div></div><div class="attr-card"><img alt="斗篷橋" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/View_of_%C4%8Cesk%C3%BD_Krumlov_from_the_Cloak_Bridge_02.jpg?width=640"/><div class="body"><h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=Cloak+Bridge+Cesky+Krumlov" rel="noopener" target="_blank">斗篷橋 <span lang="en">Plášťový most</span></a></h4><div class="hours">🕐 城堡戶外區域，通常全天可步行參觀；部分通道可能因城堡管理或活動而限制</div><div class="desc">庫倫洛夫城堡區的多層拱橋，可欣賞城堡與小鎮景觀。</div></div></div><div class="attr-card"><img alt="斯美塔那博物館" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Muzeum_Bed%C5%99icha_Smetany.JPG?width=640"/><div class="body"><h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=Smetana+Museum+Prague" rel="noopener" target="_blank">斯美塔那博物館 <span lang="en">Muzeum Bedřicha Smetany</span></a></h4><div class="hours">🕐 目前未能核實官方固定時段；建議出發前查看博物館官網／Google Maps 當日營業時間</div><div class="desc">介紹捷克作曲家斯美塔那生平與音樂的博物館，鄰近伏爾塔瓦河。</div></div></div><div class="attr-card"><img alt="火藥塔" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Praha_-_Pra%C5%A1n%C3%A1_br%C3%A1na_%26_%C4%8Cesk%C3%A1_n%C3%A1rodn%C3%AD_banka.jpg?width=640"/><div class="body"><h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=Powder+Tower+Prague" rel="noopener" target="_blank">火藥塔 <span lang="en">Prašná brána</span></a></h4><div class="hours">🕐 12 月通常每日 10:00–19:30（登塔參觀；聖誕及新年特別時段另計）</div><div class="desc">老城入口的哥德式城門塔樓，是布拉格歷史中心的重要地標。</div></div></div><div class="attr-card"><img alt="泰恩教堂" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Church_of_Our_Lady_in_front_of_T%C3%BDn_-_Prague_-_2012.jpg?width=640"/><div class="body"><h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=Church+of+Our+Lady+before+Tyn+Prague" rel="noopener" target="_blank">泰恩教堂 <span lang="en">Chrám Matky Boží před Týnem</span></a></h4><div class="hours">🕐 教堂開放會配合彌撒及活動調整；觀光時段並非每日固定，請查看當日公告</div><div class="desc">老城廣場上醒目的雙尖塔教堂，外觀極具辨識度。</div></div></div><div class="attr-card"><img alt="布拉格老城廣場與天文鐘" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Prazsky_orloj.jpg?width=640"/><div class="body"><h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=Old+Town+Square+Astronomical+Clock+Prague" rel="noopener" target="_blank">布拉格老城廣場與天文鐘 <span lang="en">Staroměstské náměstí a Pražský orloj</span></a></h4><div class="hours">🕐 老城廣場戶外全天開放；天文鐘整點表演通常 08:00–23:00，登上市政廳塔樓另有售票開放時間</div><div class="desc">老城核心廣場與天文鐘所在，可觀賞整點鐘偶表演及周邊歷史建築。</div></div></div><div class="attr-card"><img alt="哈維爾集市" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Havelsk%C3%A9_tr%C5%BEi%C5%A1t%C4%9B,_Praha.jpg?width=640"/><div class="body"><h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=Havelske+Market+Prague" rel="noopener" target="_blank">哈維爾集市 <span lang="en">Havelské tržiště</span></a></h4><div class="hours">🕐 通常每日約 10:00–19:00；攤檔時間可能不同，請以 Google Maps 當日資料為準</div><div class="desc">位於老城區的傳統露天市場，可逛紀念品與當地小物。</div></div></div><div class="attr-card"><img alt="穆夏博物館" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Mucha_Museum,_Prague.JPG?width=640"/><div class="body"><h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=Mucha+Museum+Prague" rel="noopener" target="_blank">穆夏博物館 <span lang="en">Mucha Museum</span></a></h4><div class="hours">🕐 通常每日 10:00–18:00；節假日及臨時安排請查看官網／Google Maps</div><div class="desc">展出新藝術風格藝術家阿爾豐斯・穆夏的作品與相關資料。</div></div></div><div class="attr-card"><img alt="洛克維茲宮" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Facade_of_the_Lobkowicz_Palace_in_the_Prague_Castle.jpg?width=640"/><div class="body"><h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=Lobkowicz+Palace+Prague" rel="noopener" target="_blank">洛克維茲宮 <span lang="en">Lobkowicz Palace</span></a></h4><div class="hours">🕐 每日 09:00–18:00（官方網站公布；餐廳及咖啡館通常 10:00–18:00）</div><div class="desc">位於布拉格城堡區內，收藏藝術品、歷史文物與音樂相關展品。</div></div></div></div>
+</div>
+<!-- 維也納 -->
+<div class="city-group">
+<h3>🇦🇹 Vienna</h3>
+<div class="attr-grid">
+<div class="attr-card">
+<img alt="美泉宮" src="https://commons.wikimedia.org/wiki/Special:FilePath/Schoenbrunn_Palace_in_Vienna.jpg?width=640"/>
+<div class="body">
+<h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=Schönbrunn+Palace+Vienna" rel="noopener" target="_blank">維也納美泉宮 <span lang="en">Schloss Schönbrunn</span></a></h4>
+<div class="hours">🕐 08:30–17:00（市集至 21:00）</div>
+<div class="desc">哈布斯堡王朝的夏宮，廣闊的皇家花園與充滿皇家奢華氣息的聖誕市集。</div>
+</div>
+</div>
+<div class="attr-card">
+<img alt="霍夫堡" src="https://commons.wikimedia.org/wiki/Special:FilePath/Hofburg_Palace,_Vienna.jpg?width=640"/>
+<div class="body">
+<h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=Hofburg+Wien+Sisi+Museum" rel="noopener" target="_blank">霍夫堡宮 &amp; 茜茜博物館 <span lang="en">Hofburg Wien &amp; Sisi Museum</span></a></h4>
+<div class="hours">🕐 09:30–17:00（最後入場 16:00）</div>
+<div class="desc">帝國宮殿群，含茜茜公主博物館、銀器館與帝王宮殿。</div>
+</div>
+</div>
+<div class="attr-card">
+<img alt="聖史蒂芬" src="https://commons.wikimedia.org/wiki/Special:FilePath/Stephansdom_Vienna.jpg?width=640"/>
+<div class="body">
+<h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=St.+Stephen's+Cathedral+Vienna" rel="noopener" target="_blank">聖史蒂芬主教座堂 <span lang="en">Stephansdom</span></a></h4>
+<div class="hours">🕐 週日觀光約 13:00–16:30；南塔 09:00–17:30</div>
+<div class="desc">維也納地標教堂，廣場前有熱鬧聖誕市集，可登南塔俯瞰。</div>
+</div>
+</div>
+<div class="attr-card">
+<img alt="美景宮" src="https://commons.wikimedia.org/wiki/Special:FilePath/Oberes_Belvedere.jpg?width=640"/>
+<div class="body">
+<h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=Belvedere+Palace+Vienna" rel="noopener" target="_blank">美景宮 Belvedere <span lang="en">Schloss Belvedere</span></a></h4>
+<div class="hours">🕐 上美景 09:00–18:00；下美景 10:00–18:00</div>
+<div class="desc">克里姆特《吻》所在地，花園與聖誕市集氣氛極佳。</div>
+</div>
+</div>
+<div class="attr-card">
+<img alt="市政廳市集" src="https://commons.wikimedia.org/wiki/Special:FilePath/Wiener_Rathaus.jpg?width=640"/>
+<div class="body">
+<h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=Wiener+Christkindlmarkt+Rathausplatz" rel="noopener" target="_blank">市政廳廣場聖誕市集 <span lang="en">Wiener Christkindlmarkt am Rathausplatz</span></a></h4>
+<div class="hours">🕐 開放至 22:00</div>
+<div class="desc">維也納最大最夢幻的聖誕市集，夜景與熱紅酒必體驗。</div>
+</div>
+</div>
+<div class="attr-card">
+<img alt="藝術史博物館" src="https://commons.wikimedia.org/wiki/Special:FilePath/Kunsthistorisches_Museum_Wien.jpg?width=640"/>
+<div class="body">
+<h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=Kunsthistorisches+Museum+Vienna" rel="noopener" target="_blank">藝術史博物館 <span lang="en">Kunsthistorisches Museum Wien</span></a></h4>
+<div class="hours">🕐 週二至週日 10:00–18:00（週四至 21:00）</div>
+<div class="desc">殿堂級博物館，必看勃魯蓋爾《巴別塔》與拉斐爾真跡。</div>
+</div>
+</div>
+<div class="attr-card"><img alt="安可鐘" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Ankeruhr_Clock_(Vienna).jpg?width=640"/><div class="body"><h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=Ankeruhr+Vienna" rel="noopener" target="_blank">安可鐘 <span lang="en">Ankeruhr</span></a></h4><div class="hours">🕐 位於戶外公共通道，通常全天可觀看；每日 12:00 有歷史人物輪替展示</div><div class="desc">位於霍爾市場一帶的裝飾藝術風格時鐘，每日有歷史人物輪替展示。</div></div></div><div class="attr-card"><img alt="黑死病紀念柱（維也納）" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Wien_Graben_Pests%C3%A4ule_Ostseite.jpg?width=640"/><div class="body"><h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=Pestsaule+Vienna" rel="noopener" target="_blank">黑死病紀念柱（維也納） <span lang="en">Pestsäule</span></a></h4><div class="hours">🕐 戶外公共街道景點，通常全天可參觀</div><div class="desc">格拉本大街上的巴洛克紀念柱，是維也納市中心的經典地標。</div></div></div><div class="attr-card"><img alt="格拉本大街" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Graben,_Vienna_2026.jpg?width=640"/><div class="body"><h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=Graben+Vienna" rel="noopener" target="_blank">格拉本大街 <span lang="en">Graben</span></a></h4><div class="hours">🕐 戶外步行街，通常全天可步行；商店營業時間各異</div><div class="desc">維也納市中心的步行購物街，沿路可欣賞歷史建築與精品店。</div></div></div><div class="attr-card"><img alt="阿爾貝蒂娜博物館" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Wien_-_Albertina_(b).JPG?width=640"/><div class="body"><h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=Albertina+Museum+Vienna" rel="noopener" target="_blank">阿爾貝蒂娜博物館 <span lang="en">Albertina</span></a></h4><div class="hours">🕐 每日 10:00–18:00；週三及週五延長至 21:00（官方網站）</div><div class="desc">以版畫、素描及藝術展覽聞名，位於霍夫堡宮附近。</div></div></div><div class="attr-card"><img alt="莫札特紀念碑" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Mozart-Denkmal_Wien.JPG?width=640"/><div class="body"><h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=Mozart+Monument+Burggarten+Vienna" rel="noopener" target="_blank">莫札特紀念碑 <span lang="en">Mozartdenkmal</span></a></h4><div class="hours">🕐 位於城堡花園內；花園通常約 06:00–22:00 開放，冬季以當日園區公告為準</div><div class="desc">位於城堡花園的莫札特紀念碑，適合與霍夫堡周邊步行行程安排在一起。</div></div></div><div class="attr-card"><img alt="利奧波德博物館" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Leopold_Museum,_Vienna.jpg?width=640"/><div class="body"><h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=Leopold+Museum+Vienna" rel="noopener" target="_blank">利奧波德博物館 <span lang="en">Leopold Museum</span></a></h4><div class="hours">🕐 每日 10:00–18:00，週二休館；聖誕期間可能另有安排（官方網站）</div><div class="desc">博物館區的重要美術館，收藏多件奧地利現代藝術作品。</div></div></div><div class="attr-card"><img alt="納旭市場" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Naschmarkt.jpg?width=640"/><div class="body"><h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=Naschmarkt+Vienna" rel="noopener" target="_blank">納旭市場 <span lang="en">Naschmarkt</span></a></h4><div class="hours">🕐 食品攤位通常週一至週五約 06:00–18:30、週六約 06:00–14:00；餐廳營業時間各異，週日多數攤位休息</div><div class="desc">維也納知名市場，有食材攤位、熟食與餐飲選擇。</div></div></div><div class="attr-card"><img alt="卡爾教堂" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Karlskirche_Vienna.jpg?width=640"/><div class="body"><h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=Karlskirche+Vienna" rel="noopener" target="_blank">卡爾教堂 <span lang="en">Karlskirche</span></a></h4><div class="hours">🕐 通常週一至週六 09:00–18:00、週日及假日 12:00–19:00；禮拜或活動期間可能調整</div><div class="desc">巴洛克風格教堂，以大型穹頂與入口前的水池景觀聞名。</div></div></div><div class="attr-card"><img alt="斯皮特爾貝格聖誕市集" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Wien_Am_Spittelberg.jpg?width=640"/><div class="body"><h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=Spittelberg+Christmas+Market+Vienna" rel="noopener" target="_blank">斯皮特爾貝格聖誕市集 <span lang="en">Spittelberger Weihnachtsmarkt</span></a></h4><div class="hours">🕐 聖誕市集為季節限定，2026 年確切日期及每日時間需以主辦方公告為準；街區戶外可全天通行</div><div class="desc">巷弄型聖誕市集，攤位分布在歷史街區的小街道之間。</div></div></div></div>
+</div>
+<!-- 布達佩斯 -->
+<div class="city-group">
+<h3>🇭🇺 Budapest</h3>
+<div class="attr-grid">
+<div class="attr-card">
+<img alt="國會大廈" src="https://commons.wikimedia.org/wiki/Special:FilePath/Orsz%C3%A1gh%C3%A1z_(Hungarian_Parliament_Building)(1).jpg?width=640"/>
+<div class="body">
+<h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=Orsz%C3%A1gh%C3%A1z+Budapest" rel="noopener" target="_blank">匈牙利國會大廈 <span lang="en">Országház</span></a></h4>
+<div class="hours">🕐 外觀全天 / 內部需預約導覽</div>
+<div class="desc">哥特復興式宏偉建築，多瑙河畔最耀眼的地標。</div>
+</div>
+</div>
+<div class="attr-card">
+<img alt="漁人堡" src="https://commons.wikimedia.org/wiki/Special:FilePath/Fisherman%27s_Bastion,_Budapest,_Hungary.jpg?width=640"/>
+<div class="body">
+<h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=Fisherman's+Bastion+Budapest" rel="noopener" target="_blank">布達佩斯漁人堡 <span lang="en">Halászbástya</span></a></h4>
+<div class="hours">🕐 下層全天開放 / 上層 09:00–19:00</div>
+<div class="desc">新羅馬式白色建築，遠眺國會大廈與多瑙河夜景的首選拍照絕景。</div>
+</div>
+</div>
+<div class="attr-card">
+<img alt="聖伊什特萬" src="https://commons.wikimedia.org/wiki/Special:FilePath/St._Stephen%27s_Basilica,_Budapest.jpg?width=640"/>
+<div class="body">
+<h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=St.+Stephen's+Basilica+Budapest" rel="noopener" target="_blank">聖伊什特萬聖殿 <span lang="en">Szent István Bazilika</span></a></h4>
+<div class="hours">🕐 週一至週六 09:00–17:45；週日 13:00–17:45</div>
+<div class="desc">新古典主義宏偉大教堂，廣場前有知名聖誕市集。</div>
+</div>
+</div>
+<div class="attr-card">
+<img alt="馬加什教堂" src="https://commons.wikimedia.org/wiki/Special:FilePath/Matthias_Church.jpg?width=640"/>
+<div class="body">
+<h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=Maty%C3%A1s-templom+Budapest" rel="noopener" target="_blank">馬加什教堂 &amp; 布達城堡 <span lang="en">Mátyás-templom &amp; Budavári Palota</span></a></h4>
+<div class="hours">🕐 教堂依時段 / 城堡戶外全天</div>
+<div class="desc">色彩繽紛菱形瓦頂與城堡山全景，俯瞰多瑙河最佳制高點。</div>
+</div>
+</div>
+<div class="attr-card">
+<img alt="中央市場" src="https://commons.wikimedia.org/wiki/Special:FilePath/The_Central_Market_Hall.jpg?width=640"/>
+<div class="body">
+<h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=Central+Market+Hall+Budapest" rel="noopener" target="_blank">中央市場 &amp; 多瑙河遊船 <span lang="en">Nagy Vásárcsarnok &amp; dunai hajózás</span></a></h4>
+<div class="hours">🕐 市場週一至六營業 / 遊船 18:00–21:30</div>
+<div class="desc">百年室內市集品嚐 Langos，夜間遊船欣賞燈光點亮的多瑙河明珠。</div>
+</div>
+</div>
+<div class="attr-card"><img alt="多瑙河夜間遊船" loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Budapest_by_night.jpg?width=640"/><div class="body"><h4><a class="attraction-title-link" href="https://www.google.com/maps/search/?api=1&amp;query=Danube+River+Night+Cruise+Budapest" rel="noopener" target="_blank">多瑙河夜間遊船 <span lang="en">Dunai esti hajózás</span></a></h4><div class="hours">🕐 沒有統一固定開放時間；班次依遊船公司及季節而異，冬季通常需先查詢並預訂指定航班</div><div class="desc">夜間乘船欣賞多瑙河兩岸地標建築與燈光景色，班次依營運商而異。</div></div></div></div>
+</div>
+</div>
+<!-- 美食分頁：與其他分頁同層，放回主內容容器內 -->
+<div class="section-content" id="food">
+<h2 class="section-title">
+     🍽️ 中歐美食與餐廳清單
+    </h2>
+<div aria-label="按城市篩選餐廳" class="food-filters" role="group">
+<button class="food-filter active" data-city="salzburg" onclick="filterFood('salzburg', this)">
+      🇦🇹 Salzburg
+     </button>
+<button class="food-filter" data-city="lake-region" onclick="filterFood('lake-region', this)">
+      🇦🇹 奧地利湖區
+     </button>
+<button class="food-filter" data-city="krumlov" onclick="filterFood('krumlov', this)">
+      🇨🇿 Český Krumlov
+     </button>
+<button class="food-filter" data-city="prague" onclick="filterFood('prague', this)">
+      🇨🇿 Prague
+     </button>
+<button class="food-filter" data-city="vienna" onclick="filterFood('vienna', this)">
+      🇦🇹 Vienna
+     </button>
+<button class="food-filter" data-city="budapest" onclick="filterFood('budapest', this)">
+      🇭🇺 Budapest
+     </button>
+</div>
+<div class="food-city active" data-city-panel="salzburg">
+<h4>
+      必吃／食物清單
+     </h4>
+<ul class="food-list">
+<li>
+       維也納炸豬排／小牛排 Wiener Schnitzel
+      </li>
+<li>
+       薩爾茨堡雲朵餅 Salzburger Nockerl
+      </li>
+<li>
+       清燉牛肉湯 Tafelspitz
+      </li>
+<li>
+       匈牙利濃湯 Gulasch
+      </li>
+<li>
+       蘋果卷 Apfelstrudel
+      </li>
+</ul>
+<h4>
+      餐廳與營業時間
+     </h4>
+<div class="restaurant-grid">
+<div class="restaurant-card">
+<a class="restaurant-link" href="https://www.google.com/maps/search/?api=1&amp;query=Die%20Weisse%20%E8%96%A9%E7%88%BE%E6%96%AF%E5%A0%A1%20Salzburg" rel="noopener noreferrer" target="_blank">
+        Die Weisse
+       </a>
+<p class="restaurant-desc">
+        啤酒館／奧地利菜
+       </p>
+<p class="restaurant-hours">
+<strong>
+         開放時間：
+        </strong>
+        每日約 11:00–24:00（請以 Google Maps 當日資料為準）
+       </p>
+</div>
+<div class="restaurant-card">
+<a class="restaurant-link" href="https://www.google.com/maps/search/?api=1&amp;query=Piazza%20Cavalli%20%E8%96%A9%E7%88%BE%E6%96%AF%E5%A0%A1%20Salzburg" rel="noopener noreferrer" target="_blank">
+        Piazza Cavalli
+       </a>
+<p class="restaurant-desc">
+        Day 2 午餐
+       </p>
+<p class="restaurant-hours">
+<strong>
+         開放時間：
+        </strong>
+        請點 Google Maps 查看最新開放時間
+       </p>
+</div>
+<div class="restaurant-card">
+<a class="restaurant-link" href="https://www.google.com/maps/search/?api=1&amp;query=MOZART%20Gelato%20%26%20Delights%20%E8%96%A9%E7%88%BE%E6%96%AF%E5%A0%A1%20Salzburg" rel="noopener noreferrer" target="_blank">
+        MOZART Gelato &amp; Delights
+       </a>
+<p class="restaurant-desc">
+        雪糕／甜品
+       </p>
+<p class="restaurant-hours">
+<strong>
+         開放時間：
+        </strong>
+        每日 11:00–21:00
+       </p>
+</div>
+<div class="restaurant-card">
+<a class="restaurant-link" href="https://www.google.com/maps/search/?api=1&amp;query=Gelateria%20La%20Romana%20dal%201947%20%E8%96%A9%E7%88%BE%E6%96%AF%E5%A0%A1%20Salzburg" rel="noopener noreferrer" target="_blank">
+        Gelateria La Romana dal 1947
+       </a>
+<p class="restaurant-desc">
+        雪糕（莫札特故居附近）
+       </p>
+<p class="restaurant-hours">
+<strong>
+         開放時間：
+        </strong>
+        Google Maps 顯示時段可能按季節調整，請點開查看
+       </p>
+</div>
+<div class="restaurant-card">
+<a class="restaurant-link" href="https://www.google.com/maps/search/?api=1&amp;query=Caf%C3%A9%20Konditorei%20%E8%96%A9%E7%88%BE%E6%96%AF%E5%A0%A1%20Salzburg" rel="noopener noreferrer" target="_blank">
+        Café Konditorei
+       </a>
+<p class="restaurant-desc">
+        名稱未能唯一確認分店
+       </p>
+<p class="restaurant-hours">
+<strong>
+         開放時間：
+        </strong>
+        請點 Google Maps 查看／核對分店
+       </p>
+</div>
+<div class="restaurant-card">
+<a class="restaurant-link" href="https://www.google.com/maps/search/?api=1&amp;query=Caf%C3%A9%20Bazar%20%E8%96%A9%E7%88%BE%E6%96%AF%E5%A0%A1%20Salzburg" rel="noopener noreferrer" target="_blank">
+        Café Bazar
+       </a>
+<p class="restaurant-desc">
+        傳統咖啡館
+       </p>
+<p class="restaurant-hours">
+<strong>
+         開放時間：
+        </strong>
+        週一至週六 07:30–19:30；週日及假日 09:00–18:00
+       </p>
+</div>
+</div>
+</div>
+<div class="food-city" data-city-panel="lake-region">
+<h4>
+      必吃／食物清單
+     </h4>
+<ul class="food-list">
+<li>
+       超市買蘋果薯片
+      </li>
+<li>
+       鱒魚
+      </li>
+</ul>
+<h4>
+      餐廳與營業時間
+     </h4>
+<div class="restaurant-grid">
+<div class="restaurant-card">
+<a class="restaurant-link" href="https://www.google.com/maps/search/?api=1&amp;query=Bratwurst%20Fischerei%20%E8%81%96%E6%B2%83%E5%A4%AB%E5%B2%A1%20St.%20Wolfgang" rel="noopener noreferrer" target="_blank">
+        Bratwurst Fischerei
+       </a>
+<p class="restaurant-desc">
+        烤魚（Sailbling）
+       </p>
+<p class="restaurant-hours">
+<strong>
+         開放時間：
+        </strong>
+        Google Maps 顯示營業中時曾列至 21:00；請核對當日時間
+       </p>
+</div>
+<div class="restaurant-card">
+<a class="restaurant-link" href="https://www.google.com/maps/search/?api=1&amp;query=Kaffeewerkstatt%20%E8%81%96%E6%B2%83%E5%A4%AB%E5%B2%A1%20St.%20Wolfgang" rel="noopener noreferrer" target="_blank">
+        Kaffeewerkstatt
+       </a>
+<p class="restaurant-desc">
+        咖啡／早餐／甜品
+       </p>
+<p class="restaurant-hours">
+<strong>
+         開放時間：
+        </strong>
+        每日 08:00–18:00（季節性可能不同）
+       </p>
+</div>
+<div class="restaurant-card">
+<a class="restaurant-link" href="https://www.google.com/maps/search/?api=1&amp;query=Stag%2073%20%E8%81%96%E6%B2%83%E5%A4%AB%E5%B2%A1%20St.%20Wolfgang" rel="noopener noreferrer" target="_blank">
+        Stag 73
+       </a>
+<p class="restaurant-desc">
+        餐廳／酒吧
+       </p>
+<p class="restaurant-hours">
+<strong>
+         開放時間：
+        </strong>
+        請點 Google Maps 查看最新開放時間
+       </p>
+</div>
+<div class="restaurant-card">
+<a class="restaurant-link" href="https://www.google.com/maps/search/?api=1&amp;query=PAUL%20der%20Wirt%20%E8%81%96%E6%B2%83%E5%A4%AB%E5%B2%A1%20St.%20Wolfgang" rel="noopener noreferrer" target="_blank">
+        PAUL der Wirt
+       </a>
+<p class="restaurant-desc">
+        奧地利菜
+       </p>
+<p class="restaurant-hours">
+<strong>
+         開放時間：
+        </strong>
+        週二至週日：早餐 08:00–11:00、廚房 12:00–21:00；週一休息
+       </p>
+</div>
+</div>
+</div>
+<div class="food-city" data-city-panel="lake-region">
+<h4>
+      必吃／食物清單
+     </h4>
+<ul class="food-list">
+<li>
+       Rührwerk Hallstatt Ofenfrische Schaumrollen（鮮焗奶油酥卷）
+      </li>
+</ul>
+<h4>
+      餐廳與營業時間
+     </h4>
+<div class="restaurant-grid">
+<div class="restaurant-card">
+<a class="restaurant-link" href="https://www.google.com/maps/search/?api=1&amp;query=R%C3%BChrwerk%20Hallstatt%20Ofenfrische%20Schaumrollen%20%E5%93%88%E4%BF%AE%E5%A1%94%E7%89%B9%20Hallstatt" rel="noopener noreferrer" target="_blank">
+        Rührwerk Hallstatt Ofenfrische Schaumrollen
+       </a>
+<p class="restaurant-desc">
+        烘焙／甜品
+       </p>
+<p class="restaurant-hours">
+<strong>
+         開放時間：
+        </strong>
+        Google Maps 顯示通常約 10:00 開門；請點開核對當日關門時間
+       </p>
+</div>
+</div>
+</div>
+<div class="food-city" data-city-panel="krumlov">
+<h4>
+      必吃／食物清單
+     </h4>
+<ul class="food-list">
+<li>
+       烤豬肘
+      </li>
+<li>
+       油封鴨腿
+      </li>
+<li>
+       烤鱒魚
+      </li>
+</ul>
+<h4>
+      餐廳與營業時間
+     </h4>
+<div class="restaurant-grid">
+<div class="restaurant-card">
+<a class="restaurant-link" href="https://www.google.com/maps/search/?api=1&amp;query=Kr%C4%8Dma%20U%20dwau%20Mary%C3%AD%20%E5%BA%AB%E5%80%AB%E6%B4%9B%E5%A4%AB%20%C4%8Cesk%C3%BD%20Krumlov" rel="noopener noreferrer" target="_blank">
+        Krčma U dwau Maryí
+       </a>
+<p class="restaurant-desc">
+        捷克料理
+       </p>
+<p class="restaurant-hours">
+<strong>
+         開放時間：
+        </strong>
+        Google Maps 顯示約 11:00 開門；請核對當日關門時間
+       </p>
+</div>
+<div class="restaurant-card">
+<a class="restaurant-link" href="https://www.google.com/maps/search/?api=1&amp;query=Vla%C5%A1sk%C3%BD%20Dv%C5%AFr%20%E5%BA%AB%E5%80%AB%E6%B4%9B%E5%A4%AB%20%C4%8Cesk%C3%BD%20Krumlov" rel="noopener noreferrer" target="_blank">
+        Vlašský Dvůr
+       </a>
+<p class="restaurant-desc">
+        烤豬肘／油封鴨腿／烤鱒魚
+       </p>
+<p class="restaurant-hours">
+<strong>
+         開放時間：
+        </strong>
+        請點 Google Maps 查看最新開放時間
+       </p>
+</div>
+<div class="restaurant-card">
+<a class="restaurant-link" href="https://www.google.com/maps/search/?api=1&amp;query=Ma%C5%A1tal%20%E5%BA%AB%E5%80%AB%E6%B4%9B%E5%A4%AB%20%C4%8Cesk%C3%BD%20Krumlov" rel="noopener noreferrer" target="_blank">
+        Maštal
+       </a>
+<p class="restaurant-desc">
+        捷克料理
+       </p>
+<p class="restaurant-hours">
+<strong>
+         開放時間：
+        </strong>
+        請點 Google Maps 查看最新開放時間
+       </p>
+</div>
+</div>
+</div>
+<div class="food-city" data-city-panel="prague">
+<h4>
+      必吃／食物清單
+     </h4>
+<ul class="food-list">
+<li>
+       奶油燉牛肉
+      </li>
+<li>
+       牛肉燉湯
+      </li>
+<li>
+       波希米亞烤鴨
+      </li>
+<li>
+       烤豬手
+      </li>
+<li>
+       果餡圓餅
+      </li>
+<li>
+       超市米布丁
+      </li>
+</ul>
+<h4>
+      餐廳與營業時間
+     </h4>
+<div class="restaurant-grid">
+<div class="restaurant-card">
+<a class="restaurant-link" href="https://www.google.com/maps/search/?api=1&amp;query=Caf%C3%A9%20Savoy%20%E5%B8%83%E6%8B%89%E6%A0%BC%20Prague" rel="noopener noreferrer" target="_blank">
+        Café Savoy
+       </a>
+<p class="restaurant-desc">
+        咖啡館／早餐早午餐
+       </p>
+<p class="restaurant-hours">
+<strong>
+         開放時間：
+        </strong>
+        週一至週五 08:00–22:00；週六、日 09:00–22:00
+       </p>
+</div>
+<div class="restaurant-card">
+<a class="restaurant-link" href="https://www.google.com/maps/search/?api=1&amp;query=Pork%E2%80%99s%20Vodi%C4%8Dkova%20%E5%B8%83%E6%8B%89%E6%A0%BC%20Prague" rel="noopener noreferrer" target="_blank">
+        Pork’s Vodičkova
+       </a>
+<p class="restaurant-desc">
+        豬手、啤酒雪糕；建議訂位
+       </p>
+<p class="restaurant-hours">
+<strong>
+         開放時間：
+        </strong>
+        Google Maps 顯示約 12:00 開門；請核對當日關門時間
+       </p>
+</div>
+<div class="restaurant-card">
+<a class="restaurant-link" href="https://www.google.com/maps/search/?api=1&amp;query=Restaurace%20Hybernsk%C3%A1%20%E5%B8%83%E6%8B%89%E6%A0%BC%20Prague" rel="noopener noreferrer" target="_blank">
+        Restaurace Hybernská
+       </a>
+<p class="restaurant-desc">
+        午餐／晚餐；需訂位
+       </p>
+<p class="restaurant-hours">
+<strong>
+         開放時間：
+        </strong>
+        週一至週三 10:45–23:00；週四、五 10:45–24:00；週六 11:30–24:00；週日 11:30–22:30
+       </p>
+</div>
+<div class="restaurant-card">
+<a class="restaurant-link" href="https://www.google.com/maps/search/?api=1&amp;query=Ribs%20of%20Prague%20%E5%B8%83%E6%8B%89%E6%A0%BC%20Prague" rel="noopener noreferrer" target="_blank">
+        Ribs of Prague
+       </a>
+<p class="restaurant-desc">
+        烤肋排／肉類
+       </p>
+<p class="restaurant-hours">
+<strong>
+         開放時間：
+        </strong>
+        Melantrichova 分店：週一至週四 11:30–23:30、週五六至 24:00、週日 11:30–23:30；不同分店略有差異
+       </p>
+</div>
+<div class="restaurant-card">
+<a class="restaurant-link" href="https://www.google.com/maps/search/?api=1&amp;query=Venue%20brunch%20%E5%B8%83%E6%8B%89%E6%A0%BC%20Prague" rel="noopener noreferrer" target="_blank">
+        Venue brunch
+       </a>
+<p class="restaurant-desc">
+        早午餐
+       </p>
+<p class="restaurant-hours">
+<strong>
+         開放時間：
+        </strong>
+        請點 Google Maps 查看最新開放時間
+       </p>
+</div>
+<div class="restaurant-card">
+<a class="restaurant-link" href="https://www.google.com/maps/search/?api=1&amp;query=Husinec%20Restaurace%20%E5%B8%83%E6%8B%89%E6%A0%BC%20Prague" rel="noopener noreferrer" target="_blank">
+        Husinec Restaurace
+       </a>
+<p class="restaurant-desc">
+        烤鵝
+       </p>
+<p class="restaurant-hours">
+<strong>
+         開放時間：
+        </strong>
+        週一至週日 11:00–22:00（出發前請核對）
+       </p>
+</div>
+</div>
+</div>
+<div class="food-city" data-city-panel="vienna">
+<h4>
+      必吃／食物清單
+     </h4>
+<ul class="food-list">
+<li>
+       皇帝煎餅 Kaiserschmarrn
+      </li>
+<li>
+       蘋果卷 Apfelstrudel
+      </li>
+<li>
+       鬆餅／薄餅
+      </li>
+<li>
+       牛肉湯
+      </li>
+</ul>
+<h4>
+      餐廳與營業時間
+     </h4>
+<div class="restaurant-grid">
+<div class="restaurant-card">
+<a class="restaurant-link" href="https://www.google.com/maps/search/?api=1&amp;query=Demel%20%E7%B6%AD%E4%B9%9F%E7%B4%8D%20Vienna" rel="noopener noreferrer" target="_blank">
+        Demel
+       </a>
+<p class="restaurant-desc">
+        皇帝煎餅／糕點
+       </p>
+<p class="restaurant-hours">
+<strong>
+         開放時間：
+        </strong>
+        每日 10:00–19:00
+       </p>
+</div>
+<div class="restaurant-card">
+<a class="restaurant-link" href="https://www.google.com/maps/search/?api=1&amp;query=Aufzug%20Caf%C3%A9%20%E7%B6%AD%E4%B9%9F%E7%B4%8D%20Vienna" rel="noopener noreferrer" target="_blank">
+        Aufzug Café
+       </a>
+<p class="restaurant-desc">
+        蘋果卷（美泉宮一帶）
+       </p>
+<p class="restaurant-hours">
+<strong>
+         開放時間：
+        </strong>
+        請點 Google Maps 查看最新開放時間
+       </p>
+</div>
+<div class="restaurant-card">
+<a class="restaurant-link" href="https://www.google.com/maps/search/?api=1&amp;query=mani%20im%20vierten%20%E7%B6%AD%E4%B9%9F%E7%B4%8D%20Vienna" rel="noopener noreferrer" target="_blank">
+        mani im vierten
+       </a>
+<p class="restaurant-desc">
+        鬆餅／早午餐
+       </p>
+<p class="restaurant-hours">
+<strong>
+         開放時間：
+        </strong>
+        請點 Google Maps 查看最新開放時間
+       </p>
+</div>
+<div class="restaurant-card">
+<a class="restaurant-link" href="https://www.google.com/maps/search/?api=1&amp;query=Lugeck%20%E7%B6%AD%E4%B9%9F%E7%B4%8D%20Vienna" rel="noopener noreferrer" target="_blank">
+        Lugeck
+       </a>
+<p class="restaurant-desc">
+        牛肉湯／維也納料理
+       </p>
+<p class="restaurant-hours">
+<strong>
+         開放時間：
+        </strong>
+        每日 11:30–24:00；熱食供應至 22:00
+       </p>
+</div>
+</div>
+</div>
+<div class="food-city" data-city-panel="budapest">
+<h4>
+      必吃／食物清單
+     </h4>
+<ul class="food-list">
+<li>
+       匈牙利特色菜（可留意 Gulyás 濃湯、Lángos 炸餅）
+      </li>
+</ul>
+<h4>
+      餐廳與營業時間
+     </h4>
+<div class="restaurant-grid">
+<div class="restaurant-card">
+<a class="restaurant-link" href="https://www.google.com/maps/search/?api=1&amp;query=Comme%20chez%20soi%20%E5%B8%83%E9%81%94%E4%BD%A9%E6%96%AF%20Budapest" rel="noopener noreferrer" target="_blank">
+        Comme chez soi
+       </a>
+<p class="restaurant-desc">
+        晚餐；需以電郵訂位
+       </p>
+<p class="restaurant-hours">
+<strong>
+         開放時間：
+        </strong>
+        每日 12:00–23:00
+       </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 手機版回到頂部按鈕 -->
+<button type="button" id="backToTop" aria-label="回到頂部" title="回到頂部">↑</button>
+
+<footer>
+<p>© 2026 17天中歐冬日之旅專屬互動行程手冊 ❄️<br/>點擊景點名稱即可一鍵開啟 Google 地圖<br/>祝你有個溫暖美好的冬日假期！</p>
+</footer>
+<script crossorigin="" src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<!-- 新增：美食與餐廳分頁；其餘分頁內容保持原樣 -->
+<script>
+(function(){
+ const cities = [
+ {id:'salzburg',name:'🇦🇹 Salzburg',color:'#c47f58',center:[47.8003,13.0457],zoom:14,places:[
+  ['大教堂廣場 Domplatz',47.7977,13.0456,'Day 1｜薩爾斯堡基督降臨市集'],['主教宮廣場 Residenzplatz',47.7979,13.0468,'Day 1｜薩爾斯堡基督降臨市集'],['米拉貝爾宮花園 Mirabellgarten',47.8055,13.0420,'Day 2｜第一站'],['莫札特故居 Mozart-Wohnhaus',47.8017,13.0447,'Day 2｜Makartplatz 8'],['莫札特出生地 Mozarts Geburtshaus',47.8002,13.0437,'Day 2｜Getreidegasse 9'],['糧食胡同 Getreidegasse',47.8000,13.0430,'Day 2｜舊城步行街'],['莫札特廣場 Mozartplatz',47.7979,13.0472,'Day 2'],['主教宮廣場 Residenzplatz',47.7979,13.0468,'Day 2｜王宮廣場'],['薩爾斯堡大教堂 Salzburger Dom',47.7975,13.0464,'Day 2｜中午管風琴'],['霍亨薩爾茨堡要塞 Festung Hohensalzburg',47.79521,13.04787,'Day 2｜纜車及 20:00 音樂會'] ]},
+ {id:'lake',name:'🇦🇹 奧地利湖區 Salzkammergut',color:'#6d8d78',center:[47.63,13.55],zoom:9,places:[
+  ['聖沃夫岡 Sankt Wolfgang im Salzkammergut',47.7394,13.4472,'Day 3｜湖畔小鎮及聖誕市集'],['哈修塔特 Hallstatt',47.5622,13.6493,'Day 4｜漫步湖畔小鎮'],['戈紹湖 Gosausee',47.5335,13.5278,'Day 4｜欣賞雪山湖景'],]},
+ {id:'ck',name:'🇨🇿 庫倫洛夫 Český Krumlov',color:'#7b8fa1',center:[48.8127,14.3175],zoom:14,places:[
+  ['聖維特教堂 Kostel svatého Víta',48.8108,14.3158,'Day 5｜教堂（行程原文稱聖維特大教堂）'],['黑死病紀念柱 Mariánský sloup',48.8107,14.3153,'Day 5｜舊城廣場'],['斗篷橋 Plášťový most',48.81261,14.31297,'Day 5｜城堡區步行路線'],['庫倫洛夫城堡區 Zámek Český Krumlov',48.8125,14.3152,'Day 5｜城堡參觀'], ]},
+ {id:'prague',name:'🇨🇿 Prague',color:'#7b8fa1',center:[50.087,14.421],zoom:13,places:[
+  ['老城廣場聖誕市集 Old Town Square Christmas Market',50.087558,14.420896,'Day 6｜聖誕市集（約 10:00–22:00，以當日公告為準）'],['瓦茨拉夫廣場聖誕市集 Wenceslas Square Christmas Market',50.0818,14.42546,'Day 6｜聖誕市集（約 10:00–22:00，以當日公告為準）'],['布拉格城堡 Pražský hrad',50.0909,14.4005,'Day 7｜城堡區'],['聖維特主教座堂 St. Vitus Cathedral',50.0909,14.4005,'Day 7'],['黃金巷 Golden Lane',50.0910,14.4072,'Day 7'],['洛克維茲宮 Lobkowicz Palace',50.0912,14.4080,'Day 7'],['Prague’s Narrowest Alley',50.0874,14.4078,'Day 7'],['查理大橋 Charles Bridge',50.0865,14.4114,'Day 7'],['小城橋塔 Lesser Town Bridge Tower',50.0870,14.4077,'Day 7'],['聖尼古拉教堂 St. Nicholas Church',50.0881,14.4038,'Day 7'],['維巴庭園 Vrtba Garden',50.0879,14.4030,'Day 7'],['列儂牆 Lennon Wall',50.0863,14.4065,'Day 7'],['斯美塔那博物館 Bedřich Smetana Museum',50.0850,14.4143,'Day 8'],['火藥塔 Powder Tower',50.0870,14.4278,'Day 8'],['泰恩教堂 Church of Our Lady before Týn',50.0875,14.4220,'Day 8'],['天文鐘／老城廣場 Astronomical Clock',50.0870,14.4207,'Day 8'],['哈維爾集市 Havelské tržiště',50.0837,14.4210,'Day 8'],['穆夏博物館 Mucha Museum',50.0844,14.4260,'Day 8'],['Man Hanging Out',50.0834,14.4215,'Day 8｜街頭雕塑'],['卡夫卡旋轉頭像 Kafka Head',50.0812,14.4206,'Day 8｜街頭雕塑'],['Slight Uncertainty Man',50.0787,14.4200,'Day 8｜街頭雕塑'],['跳舞的房子 Dancing House',50.0755,14.4142,'Day 8'] ]},
+ {id:'vienna',name:'🇦🇹 Vienna',color:'#c47f58',center:[48.2085,16.3731],zoom:12,places:[
+  ['安可鐘 Ankeruhr',48.2102,16.3730,'Day 9'],
+ ]},
+ {id:'budapest',name:'🇭🇺 Budapest',color:'#9a8068',center:[47.498,19.040],zoom:12,places:[
+  ['聖伊什特萬聖殿 Szent István Bazilika',47.50051,19.05349,'Day 12｜教堂及聖誕市集'],['匈牙利國會大廈 Hungarian Parliament',47.50726,19.04536,'Day 12'],['漁人堡 Halászbástya',47.50233,19.03493,'Day 12'],['馬加什教堂 Matthias Church',47.5019,19.0346,'Day 12'],['布達城堡 Buda Castle',47.4960,19.0399,'Day 12'],['中央市場 Great Market Hall',47.4871,19.0577,'Day 12'],['多瑙河遊船碼頭 Danube Cruise area',47.4990,19.0450,'Day 12｜夜間遊船'] ]}
+ ];
+ // Replace Vienna placeholder with its verified itinerary list
+ const vienna=cities.find(c=>c.id==='vienna'); vienna.places=[
+ ['安可鐘 Ankeruhr',48.2102,16.3730,'Day 9'],['聖史蒂芬主教座堂 Stephansdom',48.20849,16.37317,'Day 9'],['聖史蒂芬廣場聖誕市集',48.20849,16.37317,'Day 9｜聖誕市集'],['黑死病紀念柱 Pestsäule',48.2092,16.3722,'Day 9'],['格拉本大街 Graben',48.2086,16.3707,'Day 9'],['阿爾貝蒂娜博物館 Albertina',48.2044,16.3688,'Day 9'],['市政廳廣場聖誕市集 Rathausplatz',48.2108,16.3575,'Day 9｜聖誕市集'],['霍夫堡宮 Hofburg',48.20563,16.36469,'Day 10'],['莫札特紀念碑 Mozart Monument',48.2037,16.3658,'Day 10'],['利奧波德博物館 Leopold Museum',48.2028,16.3588,'Day 10'],['藝術史博物館 Kunsthistorisches Museum Wien',48.2038,16.3616,'Day 10'],['斯皮特爾貝格聖誕市集 Spittelberg',48.2022,16.3558,'Day 10｜聖誕市集'],['美泉宮 Schloss Schönbrunn',48.18499,16.31233,'Day 11｜宮殿及市集'],['納旭市場 Naschmarkt',48.1985,16.3632,'Day 11'],['卡爾教堂 Karlskirche',48.1983,16.3718,'Day 11'],['美景宮 Belvedere',48.19328,16.38051,'Day 11'],['維也納城市公園 Stadtpark',48.2037,16.3808,'Day 11'],['維也納金色大廳 Musikverein',48.200556,16.372222,'Day 11']
+ ];
+ let map, markerLayer, lineLayer, currentCity='salzburg';
+ function mapsUrl(name, city){return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(name+', '+city);}
+ function init(){
+  const controls=document.getElementById('cityMapControls');
+  controls.innerHTML=cities.map(c=>`<button type="button" class="city-map-btn ${c.id===currentCity?'active':''}" data-city="${c.id}">${c.name}</button>`).join('');
+  controls.addEventListener('click',e=>{const b=e.target.closest('[data-city]');if(b)showCity(b.dataset.city)});
+  if(!window.L) {document.getElementById('cityMapSummary').textContent='地圖程式載入失敗，請確認網絡連線後重新整理頁面。';return;}
+  // 手機觸控優化：關閉滾輪縮放（避免與頁面上下捲動衝突），改用雙指縮放與 +/- 按鈕
+  map=L.map('centralEuropeMap',{
+    scrollWheelZoom: false,
+    doubleClickZoom: true,
+    touchZoom: true,
+    dragging: true,
+    tap: true,
+    tapTolerance: 15
+  }).setView([47.9,15.7],5);
+  // 桌面再啟用滾輪縮放
+  if (window.matchMedia('(min-width: 601px)').matches) {
+    map.scrollWheelZoom.enable();
+  }
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a>'}).addTo(map);
+  markerLayer=L.layerGroup().addTo(map);lineLayer=L.layerGroup().addTo(map);
+  showCity(currentCity);
+ }
+ function showCity(id){
+  currentCity=id;const c=cities.find(x=>x.id===id);if(!c||!map)return;
+  document.querySelectorAll('.city-map-btn').forEach(b=>b.classList.toggle('active',b.dataset.city===id));
+  markerLayer.clearLayers();lineLayer.clearLayers();
+  const routeColors=['#c47f58','#6d8d78','#7b8fa1','#9a8068','#8c7898','#6e9a9a','#b07c8c'];
+  const dailyRoutes={};
+  c.places.forEach((p,i)=>{const [name,lat,lon,day]=p;const ll=[lat,lon];
+   const match=String(day).match(/Day\s*(\d+)/i);const dayKey=match?`Day ${match[1]}`:'其他';
+   if(!dailyRoutes[dayKey])dailyRoutes[dayKey]=[];dailyRoutes[dayKey].push(ll);
+   const dayNum=match?Number(match[1]):1;const routeColor=routeColors[(dayNum-1)%routeColors.length];
+   // 只微調三個被遮擋的標記顯示位置；路線仍連接景點實際座標，不加虛線。
+   const offsetMarker = (id==='salzburg' && i===1) || (id==='prague' && i===2) || (id==='vienna' && i===1);
+   const markerTransform = offsetMarker ? 'transform:translate(13px,-11px);' : '';
+   const icon=L.divIcon({className:'',html:`<span class="trip-map-marker" style="background:${routeColor};${markerTransform}">${i+1}</span>`,iconSize:[27,27],iconAnchor:[13,13]});
+   L.marker(ll,{icon}).addTo(markerLayer).bindPopup(`<strong>${name}</strong><br>${day}<br><a href="${mapsUrl(name,c.name.replace(/^.{2} /,''))}" target="_blank" rel="noopener">在 Google Maps 查看位置 ↗</a>`);
+  });
+  Object.entries(dailyRoutes).forEach(([dayKey,coords])=>{if(coords.length>1){const match=dayKey.match(/Day\s*(\d+)/i);const dayNum=match?Number(match[1]):1;L.polyline(coords,{color:routeColors[(dayNum-1)%routeColors.length],weight:3,opacity:.82,dashArray:'7 8'}).addTo(lineLayer);}});
+  map.setView(c.center,c.zoom);setTimeout(()=>map.invalidateSize(),100);
+  document.getElementById('cityMapSummary').textContent='景點標記及每日路線以不同顏色區分。手機請用雙指縮放地圖，點標記可查看詳情。';
+ }
+ window.addEventListener('DOMContentLoaded',init);
+})();
+</script>
+<script>
+
+    function switchTab(tabId, btn) {
+        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelectorAll('.section-content').forEach(c => c.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+        if (tabId === 'salzburg-map' && window.L) setTimeout(() => { const el = document.getElementById('centralEuropeMap'); if (el && el._leaflet_id) window.dispatchEvent(new Event('resize')); }, 150);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleCheck(checkbox) {
+        const item = checkbox.closest('.checklist-item');
+        if (checkbox.checked) {
+            item.classList.add('checked');
+        } else {
+            item.classList.remove('checked');
+        }
+        try {
+            const checks = {};
+            document.querySelectorAll('.checklist-item input').forEach((cb, i) => {
+                checks[i] = cb.checked;
+            });
+            localStorage.setItem('tripChecklist', JSON.stringify(checks));
+        } catch(e) {}
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        try {
+            const saved = JSON.parse(localStorage.getItem('tripChecklist') || '{}');
+            document.querySelectorAll('.checklist-item input').forEach((cb, i) => {
+                if (saved[i]) {
+                    cb.checked = true;
+                    cb.closest('.checklist-item').classList.add('checked');
+                }
+            });
+        } catch(e) {}
+    });
+</script>
+<script>
+function filterFood(city, btn){document.querySelectorAll(".food-filter").forEach(b=>b.classList.remove("active"));btn.classList.add("active");document.querySelectorAll(".food-city").forEach(p=>p.classList.toggle("active",p.dataset.cityPanel===city));}
+</script>
+<script id="attraction-city-filter-script">
+(function(){
+ const root=document.getElementById('attractions'); if(!root)return;
+ const groups=Array.from(root.querySelectorAll('.city-group'));
+ const keys=['salzburg','lake','czech','vienna','budapest'];
+ groups.forEach((group,i)=>group.dataset.attractionCity=keys[i]||'other');
+ const controls=document.getElementById('attractionCityFilters'); if(!controls)return;
+ controls.addEventListener('click',function(event){
+  const btn=event.target.closest('[data-attraction-city]'); if(!btn)return;
+  const key=btn.dataset.attractionCity;
+  controls.querySelectorAll('.attraction-city-btn').forEach(b=>b.classList.toggle('active',b===btn));
+  groups.forEach(group=>{group.style.display=(key==='all'||group.dataset.attractionCity===key)?'':'none';});
+ });
+})();
+</script>
+<script>
+/* 交通攻略配色：各路段獨立使用莫蘭迪色系，並按交通方式區分 Tag */
+(function(){
+  const palette = [
+    ['#8CA6B2','#EAF0F3'], ['#9BAF9D','#EDF2ED'], ['#C49A83','#F5ECE6'],
+    ['#A99AB8','#F0ECF3'], ['#C5AE79','#F5F0E3'], ['#7FA6A1','#E8F1EF'],
+    ['#B68E98','#F4EAED'], ['#8297B8','#E9EEF6'], ['#B1A18D','#F1EDE7'],
+    ['#8EAAA9','#EAF1F0'], ['#B9A2C2','#F2EDF4'], ['#C69D78','#F6EEE5']
+  ];
+  document.querySelectorAll('#transport .route-table').forEach(table => {
+    let n = 0;
+    table.querySelectorAll('tr').forEach((tr, idx) => {
+      if (idx === 0) return;
+      const cells = tr.querySelectorAll('td');
+      if (cells.length < 2) return;
+      const pair = palette[n % palette.length]; n++;
+      tr.classList.add('segment-row');
+      cells[0].classList.add('route-day');
+      cells[1].classList.add('route-segment');
+      cells[1].style.setProperty('--segment-color', pair[0]);
+      cells[1].style.setProperty('--segment-bg', pair[1]);
+      cells[0].style.backgroundColor = pair[1];
+      cells[0].style.color = '#465B5D';
+    });
+  });
+  document.querySelectorAll('#transport .tag.transport').forEach(tag => {
+    const t = tag.textContent.trim();
+    if (/航班/.test(t)) tag.classList.add('route-flight');
+    else if (/船|渡輪|Ferry/i.test(t)) tag.classList.add('route-ferry');
+    else if (/回程/.test(t)) tag.classList.add('route-return');
+    else if (/火車|鐵路|Railjet|RE5|S-Bahn|列車/i.test(t)) tag.classList.add('route-train');
+    else tag.classList.add('route-bus');
+  });
+})();
+</script>
+
+<script>
+/* 回到頂部按鈕 */
+(function(){
+  const btn = document.getElementById('backToTop');
+  if (!btn) return;
+  function toggleBtn() {
+    if (window.scrollY > 420) {
+      btn.classList.add('show');
+    } else {
+      btn.classList.remove('show');
+    }
+  }
+  window.addEventListener('scroll', toggleBtn, { passive: true });
+  toggleBtn();
+  btn.addEventListener('click', function(){
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
+</script>
+
+<script>
+/* 手機版交通路段：點擊卡片展開／收合詳情 */
+(function(){
+  function isMobile(){ return window.matchMedia('(max-width: 600px)').matches; }
+  function initRouteCollapse(){
+    if (!isMobile()) return;
+    document.querySelectorAll('#transport .route-table tr').forEach(function(tr, idx){
+      if (idx === 0) return; // 表頭（已被 CSS 隱藏）
+      if (tr.querySelectorAll('td').length < 3) return;
+      tr.setAttribute('role', 'button');
+      tr.setAttribute('tabindex', '0');
+      tr.setAttribute('aria-expanded', 'false');
+      function toggle(e){
+        // 若點的是連結，不攔截
+        if (e.target.closest('a')) return;
+        const open = tr.classList.toggle('route-expanded');
+        tr.setAttribute('aria-expanded', open ? 'true' : 'false');
+      }
+      tr.addEventListener('click', toggle);
+      tr.addEventListener('keydown', function(e){
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(e); }
+      });
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initRouteCollapse);
+  } else {
+    initRouteCollapse();
+  }
+})();
+</script>
+</body>
+</html>
